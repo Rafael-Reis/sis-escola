@@ -1,0 +1,37 @@
+<div class="text-muted text-center" *ngIf="items().length === 0; else listItems">
+  <i class="pi pi-shopping-cart" style="font-size: 72px;"></i>
+</div>
+
+<ng-template #listItems>
+  <div>
+    <table class="w-100">
+      <tbody>
+        <tr *ngFor="let item of items()">
+          <td>{{ item.produto.nome }}</td>
+          <td style="width: 35px;">
+            <p-button type="button" icon="pi pi-minus" styleClass="ui-button-secondary" title="Diminuir" (onClick)="diminuirQtd(item)"></p-button>
+          </td>
+          <td style="width: 75px;">
+            <input class="w-100 text-center" type="number" [value]="item.quantidade" (change)="alterarQtd(item, $event.target.value)"  onkeypress="return event.charCode >= 48" pInputText/>
+          </td>
+          <td style="width: 35px;">
+            <p-button type="button" icon="pi pi-plus" styleClass="ui-button-secondary" title="Aumentar" (onClick)="aumentarQtd(item)"></p-button>
+          </td>
+          <td class="text-right text-success">{{item.quantidade + "X"}} {{ item.produto?.preco | currency:'BRL':true }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div class="py-1 text-right">
+    <h2 class="m-0">
+      <span class="mr-1">Total:</span>
+      <span class="text-success">{{ total()  | currency:'BRL':true}}</span>
+    </h2>
+  </div>
+
+</ng-template>
+
+

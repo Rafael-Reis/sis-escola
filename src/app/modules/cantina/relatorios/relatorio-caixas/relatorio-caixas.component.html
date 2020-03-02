@@ -1,0 +1,51 @@
+<p-table
+  [columns]="cols"
+  [value]="caixas"
+  [paginator]="paginacao?.perPage < paginacao?.total"
+  [rows]="paginacao?.perPage"
+  [totalRecords]="paginacao?.total"
+  [lazy]="true"
+  (onLazyLoad)="loadLazy($event)"
+  (onRowSelect)="onRowSelect($event)"
+  selectionMode="single"
+  dataKey="id"
+  [loading]="loadingTable"
+>
+  <ng-template pTemplate="caption">
+    Caixas
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr class="text-left">
+      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-caixa let-expanded="expanded" let-columns="cols">
+    <tr [pSelectableRow]="caixa">
+      <td>{{ caixa?.dataAbertura | date: 'short'}}</td>
+      <td>
+        <div *ngIf="caixa?.dataFechamento; else aberto">
+          {{ caixa?.dataFechamento | date: 'short'}}
+        </div>
+
+        <ng-template #aberto>
+          <p-button styleClass="ui-button-warning" label="Fechar este Caixa" (onClick)="fecharCaixa(caixa)"></p-button>
+        </ng-template>
+      </td>
+      <td>{{ caixa?.userAbertura.name }}</td>
+      <td>{{ caixa?.suprimento | currency:'BRL':true }}</td>
+      <td class="text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
+      <td class="text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="summary">
+    <span *ngIf="paginacao?.total">
+      {{ "Total de Vendas: " + paginacao?.total }}
+    </span>
+  </ng-template>
+
+</p-table>
+

@@ -1,0 +1,67 @@
+
+<div *ngIf="opcao === 'abrir'">
+
+  <form [formGroup]="formAbrirCaixa" (ngSubmit)="formSubmitAbrirCaixa()" >
+
+    <p class="mb-1 "><b>Data/Hora:</b> {{ hoje | date:'short' }}</p>
+
+    <p class="mb-1 "><b>Operador:</b> {{ this.authService.user.name | uppercase}}</p>
+
+    <div class="mb-2">
+      <app-form-input label="Suprimento em dinheiro">
+        <input type="text" class="w-100" formControlName="suprimento" currencyMask pInputText/>
+      </app-form-input>
+    </div>
+
+    <p-button type="submit" icon="pi pi-lock-open" label="Abrir Caixa" [disabled]="this.formAbrirCaixa.invalid || this.submit"></p-button>
+  </form>
+
+</div>
+
+<div *ngIf="opcao === 'fechar'">
+
+
+  <div *ngIf="admin; else permissao">
+
+    <div *ngIf="caixa" class="mb-1">
+      <table>
+        <tbody>
+          <tr>
+            <td class="text-right font-bold uppercase">Operador:</td>
+            <td class="p-1">{{ this.authService.user.name }}</td>
+          </tr>
+          <tr>
+            <td class="text-right font-bold uppercase">Suprimento:</td>
+            <td class="p-1 font-bold text-info">{{ caixa?.suprimento | currency:'BRL':true}}</td>
+          </tr>
+          <tr>
+            <td class="text-right font-bold uppercase">Vendas á vista:</td>
+            <td class="p-1 font-bold text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
+          </tr>
+          <tr>
+            <td class="text-right font-bold uppercase">Vendas á Prazo:</td>
+            <td class="p-1 font-bold text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-center">Fechar o Caixa?</h2>
+    <div style="height: 40px">
+      <div class="float-left">
+        <p-button label="Sim" (onClick)="confirmarFechamento()"></p-button>
+      </div>
+
+      <div class="float-right">
+        <p-button label="Não" styleClass="ui-button-danger" (onClick)="cancelarFechamento()"></p-button>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #permissao>
+    <h2 class="text-center">Administrador</h2>
+    <app-form-permissao (status)="confirmAdmin($event)"></app-form-permissao>
+  </ng-template>
+
+</div>

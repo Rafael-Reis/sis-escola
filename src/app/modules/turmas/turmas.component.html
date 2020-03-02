@@ -1,0 +1,58 @@
+<div class="mb-2">
+  <p-toolbar>
+      <div class="ui-toolbar-group-left">
+        <button *ngIf="acessoService.isPermitido()" pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-primary" (click)="showModalFormCadastro()"></button>
+      </div>
+
+      <div class="ui-toolbar-group-right">
+        <span class="mr-1">Ano Letivo:</span>
+        <p-dropdown placeholder="Selecione" [options]="anos" (onChange)="selectAnoLetivo($event)"></p-dropdown>
+      </div>
+  </p-toolbar>
+</div>
+
+<ng-container>
+  <p-table
+    [columns]="cols"
+    [value]="turmas"
+    [lazy]="true"
+    (onLazyLoad)="loadLazy($event)"
+    (onRowSelect)="onRowSelect($event)"
+    (onRowReorder)="reorderTurmas($event)"
+    selectionMode="single"
+    dataKey="id"
+    [loading]="tableLoading"
+    [reorderableColumns]="true">
+
+    <ng-template pTemplate="caption">
+      Turmas de {{ ano }}
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr class="text-left">
+          <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }" pReorderableColumn>
+            {{col.header}}
+          </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-turma let-index="rowIndex">
+      <tr [pSelectableRow]="turma" [pReorderableRow]="index">
+        <td>
+          <i title="Mover" class="pi pi-bars" pReorderableRowHandle></i>
+        </td>
+        <td>{{ turma.nome }}</td>
+        <td>{{ getNomeTurno(turma.turno) }}</td>
+        <td>{{ turma.total }}</td>
+        <td>
+          <p-button [disabled]="acessoService.isNegado()" styleClass="ui-button-secondary" (onClick)="excluir(turma)" icon="pi pi-trash"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      {{ "Turmas: " + turmas?.length + " - Estudantes: " + totalEstudante() }}
+    </ng-template>
+
+  </p-table>
+</ng-container>

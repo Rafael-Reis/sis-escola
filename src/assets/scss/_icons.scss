@@ -1,0 +1,14 @@
+
+
+@each $iconName in 'user' 'dashboard' 'cantina' 'product' 'report' 'estudante' 'money' 'note' 'turma' 'fast-food' 'shopping-bag' 'cog' 'cap' 'payment-terminal' 'equipe' {
+  .icon-#{$iconName} {
+    &:after{
+      display: inline-block;
+      content: ' ';
+      width: 38px;
+      height: 38px;
+      background-image: url('./assets/images/svg/#{$iconName}.svg');
+      background-size:38px 38px;
+    }
+  }
+}

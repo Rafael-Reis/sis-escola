@@ -1,0 +1,21 @@
+.total{
+    padding: 16px;
+    background-color: #DDD;
+    border: solid 1px #CCC;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.item-pagamento{
+  cursor: pointer;
+  display:inline-block;
+  margin-right: 5px;
+  padding:5px  10px;
+  background-color: #EEE;
+  border: solid 1px #CCC;
+  border-radius: 3px;
+  span{
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}

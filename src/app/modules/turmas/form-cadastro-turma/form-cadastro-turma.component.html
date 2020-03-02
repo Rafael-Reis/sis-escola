@@ -1,0 +1,29 @@
+<form [formGroup]="turmaForm" (ngSubmit)="formSubmit()">
+
+  <div class="mb-1">
+    <app-form-input label="Nome">
+      <input class="w-100" type="text" formControlName="nome" pInputText>
+    </app-form-input>
+  </div>
+
+  <div class="mb-1">
+    <app-form-input label="Desrcrição">
+      <textarea class="w-100" [rows]="5" formControlName="descricao" pInputTextarea></textarea>
+    </app-form-input>
+  </div>
+
+  <div class="mb-1">
+    <app-form-input label="Turno">
+      <p-dropdown styleClass="w-100" [options]="turnos" formControlName="turno" placeholder="Selecione"></p-dropdown>
+    </app-form-input>
+  </div>
+
+  <div class="mb-1">
+    <app-form-input label="Ano Letivo">
+      <input class="w-100" type="text" formControlName="ano" pInputText>
+    </app-form-input>
+  </div>
+
+  <p-button *ngIf="acessoService.isPermitido()" type="submit" [label]="turma ? 'Atualizar' : 'Cadastrar'" [disabled]="submit"></p-button>
+
+</form>

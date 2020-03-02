@@ -1,0 +1,21 @@
+$alertColors: (
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+);
+
+//alerts
+@each $key, $value in $alertColors {
+
+  .alert {
+    padding: 16px;
+    border-radius: 3px;
+  }
+
+  .alert-#{$key}{
+    color: white;
+    background-color: $value
+  }
+
+}

@@ -1,0 +1,31 @@
+<form [formGroup]="produtoForm" (ngSubmit)="formSubmit()">
+
+  <app-form-input label="Nome">
+    <input class="w-100" type="text" formControlName="nome" pInputText>
+  </app-form-input>
+
+  <app-form-input label="Valor">
+    <input class="w-100" type="text" currencyMask formControlName="preco" pInputText>
+  </app-form-input>
+
+  <app-form-input label="Quantidade">
+    <input class="w-100" type="number" formControlName="estoque" pInputText>
+  </app-form-input>
+
+  <div *ngIf="produtoForm.enabled" class="mb-1">
+    <p-checkbox label="Quantidade Ilimitada" (onChange)="semLimite()"></p-checkbox>
+  </div>
+
+  <app-form-input label="Categoria">
+    <p-dropdown styleClass="w-100" [options]="categoriasSelect" formControlName="categoriaId"></p-dropdown>
+  </app-form-input>
+
+  <app-form-input label="Data de Vencimento">
+    <p-inputMask styleClass="w-100" mask="99/99/9999" formControlName="validade"></p-inputMask>
+  </app-form-input>
+
+  <div class="mt-1">
+    <p-button *ngIf="acessoService.isPermitido()" type="submit" [label]="produto ? 'Atualizar' : 'Salvar'" [disabled]="this.produtoForm.invalid"></p-button>
+  </div>
+
+</form>

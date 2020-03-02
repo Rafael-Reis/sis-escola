@@ -1,0 +1,21 @@
+<form [formGroup]="permissaoForm" (ngSubmit)="formSubmit()" >
+
+  <div class="mb-2">
+    <app-form-input label="Usuário">
+      <input class="w-100" type="text" formControlName="username" pInputText>
+    </app-form-input>
+  </div>
+
+  <div>
+    <app-form-input  label="Senha">
+      <input class="w-100" type="password" formControlName="password"  pInputText>
+    </app-form-input>
+  </div>
+
+  <p *ngIf="msgError" class="alert alert-danger">{{ msgError }}</p>
+  <p *ngIf="msgWarn" class="alert alert-warning">{{ msgWarn }}</p>
+
+  <div class="mt-2">
+    <p-button type="submit" [icon]="submit ? 'pi pi-spin pi-spinner' : '' " [label]="submit ? 'Verificando' : 'Entrar'" [disabled]="submit"></p-button>
+  </div>
+</form>

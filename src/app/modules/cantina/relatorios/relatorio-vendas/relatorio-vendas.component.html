@@ -1,0 +1,72 @@
+
+<p-table
+  [columns]="cols"
+  [value]="ordens"
+  [paginator]="paginacao?.perPage < paginacao?.total"
+  [rows]="paginacao?.perPage"
+  [totalRecords]="paginacao?.total"
+  [lazy]="true"
+  (onLazyLoad)="loadLazy($event)"
+  dataKey="id"
+  [loading]="loadingTable"
+>
+  <ng-template pTemplate="caption">
+    Compras da Cantina
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr class="text-left">
+      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-ordem let-expanded="expanded" let-columns="cols">
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="ordem">
+            <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+        </a>
+      </td>
+      <td>{{ ordem?.created | date:'short' }}</td>
+      <td>{{ ordem?.pagamento | uppercase}}</td>
+      <td class="text-success">
+        {{ ordem?.total | currency:'BRL':true }}
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="rowexpansion" let-ordem let-columns="cols">
+    <tr class="bg-warning">
+      <td [attr.colspan]="4">
+
+        <p-table [value]="ordem?.itens">
+          <ng-template pTemplate="header">
+              <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+              <tr>
+                <td>{{ item?.produto.nome | uppercase}}</td>
+                <td>{{ item?.quantidade }}</td>
+                <td class="text-success">
+                  {{ item?.preco | currency:'BRL':true }}
+                </td>
+              </tr>
+          </ng-template>
+        </p-table>
+
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="summary">
+    {{ "Total de Compras: " + paginacao?.total }}
+  </ng-template>
+
+</p-table>
+

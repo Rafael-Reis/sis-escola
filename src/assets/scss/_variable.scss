@@ -1,0 +1,120 @@
+// MAIN COLORS
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+$primary: #3f51b5;
+$secondary: #5e564c;
+
+$dark: #1c1b19;
+$light: #f4f5f6;
+$white: white;
+
+// EXTRA COLORS
+$success: #00C851;
+$info: #17a2b8;
+$warning: #ffbb33;
+$danger: #e91224;
+$gray: gray;
+$light-gray: #EEE;
+$muted: #b1b1b1;
+$indigo: #283593;
+
+// DEFAILT TEXT COLOR
+$default-text-color: #333;
+
+
+// TYPOGRAPHY
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// FONT DEFAULTS
+$line-height: 1.5;
+$font-size-base: 16px;
+$font-margin-base: 5px;
+$font-weight-base: 400;
+$font-weight-bold: bold;
+
+// FONT SIZES
+$h1: 46px;
+$h2: 36px;
+$h3: 28px;
+$h4: 22px;
+$h5: 18px;
+$h6: 16px;
+
+
+// GRID
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// SMALL
+$small-media: '590px'; // EDITABLE
+
+// MEDIUM
+$medium-media: '790px'; // EDITABLE
+
+// LARGE
+$large-media: '1160px'; // EDITABLE
+
+// XL
+$xl-media: '1260px'; // EDITABLE
+
+
+
+
+// UTILITIES
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// CONTAINER
+$container: 1150px;
+$container-fluid: 100%;
+
+
+// TRANSITION
+$transition: all 0.220s ease;
+
+
+// DEFAULT PADDING
+$default-padding: 10px;
+
+
+// BORDER RADIUS
+$border-radius: 4px;
+$radius: true;
+
+
+// BREAD CRUMB DIVIDER
+$breadcrumb-divider: quote("\f101");
+
+
+// BACKGROUND & TEXT COLORS
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+$colors: ('primary': $primary,
+  'secondary': $secondary,
+  'light': $light,
+  'dark': $dark,
+  'gray': $gray,
+  'white': $white,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'muted': $muted,
+  'indigo': $indigo);
+
+
+// BUTTON COLORS
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+// BUTTON COLORS
+$btn-colors: ('primary': $primary,
+  'secondary': $secondary,
+  'light': $light,
+  'white': $white,
+  'dark': $dark,
+  'gray': $gray,
+  'muted': $muted,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+);

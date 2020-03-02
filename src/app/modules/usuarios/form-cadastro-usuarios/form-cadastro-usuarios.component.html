@@ -1,0 +1,43 @@
+<div *ngIf="!userPasse; else passe">
+  <form  [formGroup]="usuarioForm">
+
+    <app-form-input label="Nome" [required]="true">
+      <input class="w-100" type="text" formControlName="name" pInputText>
+    </app-form-input>
+
+    <app-form-input label="E-mail">
+      <input class="w-100" type="text" formControlName="email" pInputText>
+    </app-form-input>
+
+    <div *ngIf="!ocultarSenha; else ocultar">
+      <app-form-input  label="Senha" [required]="user ? false : true ">
+        <input class="w-100" type="password" formControlName="password" appPassword pInputText>
+      </app-form-input>
+
+      <div *ngIf="usuarioForm.enabled" class="mb-1">
+        <p-button label="Gerar Senha" styleClass="ui-button-secondary" (onClick)="gerarSenha()"></p-button>
+      </div>
+    </div>
+
+    <ng-template #ocultar>
+      <div *ngIf="usuarioForm.enabled" class="mb-1">
+        <p-checkbox label="Alterar Senha" (onChange)="alterarSenha()"></p-checkbox>
+      </div>
+    </ng-template>
+
+    <app-form-input label="Nivel" [required]="true">
+      <p-dropdown styleClass="w-100" [options]="niveis" formControlName="nivel"></p-dropdown>
+    </app-form-input>
+
+    <div *ngIf="acessoService.isPermitido()" class="mt-2">
+      <p-button  [label]="user ? 'Atualizar' : 'Salvar'" (onClick)="formSubmit()" [disabled]="submit"></p-button>
+    </div>
+
+  </form>
+</div>
+
+<ng-template #passe>
+  <h2 class="text-center">Credenciais</h2>
+  <p><b>Login:</b> {{ userPasse.username}}</p>
+  <p><b>Senha:</b> {{ usuarioForm.get('password').value }}</p>
+</ng-template>

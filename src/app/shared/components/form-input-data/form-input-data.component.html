@@ -1,0 +1,11 @@
+<div class="p-grid">
+  <div class="p-col-3">
+    <p-dropdown placeholder="Dia" [disabled]="disabled" [options]="dias" [(ngModel)]="dia" (onChange)="selectDia($event)" [style]="{'min-width':'100%'}"></p-dropdown>
+  </div>
+  <div class="p-col-6">
+    <p-dropdown placeholder="Mês" [disabled]="disabled" [options]="listMeses()" [(ngModel)]="mes" (onChange)="selectMes($event)" [style]="{'min-width':'100%'}"></p-dropdown>
+  </div>
+  <div class="p-col-3">
+    <p-dropdown placeholder="Ano" [disabled]="disabled" [options]="anos" [(ngModel)]="ano" (onChange)="selectAno($event)" [style]="{'min-width':'100%'}"></p-dropdown>
+  </div>
+</div>

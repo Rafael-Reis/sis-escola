@@ -1,0 +1,31 @@
+<div class="p-grid p-align-center">
+
+  <div class="p-col">
+    <a title="Produtos" [routerLink]="['/cantina/produtos']">
+      <p-card header="Produtos">
+        <p>Estoque dos produtos da cantina.</p>
+        <img style="width: 70%; margin-top: 30px; margin-left: 15%" src="assets/images/svg/product.svg"/>
+      </p-card>
+    </a>
+  </div>
+
+  <div *ngIf="acessoService.isPermitido()" class="p-col">
+    <a title="Relatórios" [routerLink]="['/cantina/relatorios',{outlets: { outletRelatorio: ['caixas'] } }]">
+      <p-card header="Relatórios">
+        <p>Veja os relátorios da cantina</p>
+        <img style="width: 70%; margin-top: 30px; margin-left: 15%" src="assets/images/svg/report.svg"/>
+      </p-card>
+    </a>
+  </div>
+
+  <div class="p-col">
+    <a title="Caixa" [routerLink]="['/cantina/caixa']">
+      <p-card header="Caixa">
+        <p>Faça as vendas da cantina</p>
+
+        <img style="width: 70%; margin-top: 30px; margin-left: 15%" src="assets/images/svg/payment-terminal.svg"/>
+      </p-card>
+    </a>
+  </div>
+
+</div>

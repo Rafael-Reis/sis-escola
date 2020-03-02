@@ -1,0 +1,16 @@
+<div class="mb-1" [class.has-error]="hasError()">
+  <label class="label">{{ label }} <span *ngIf="required" class="text-danger">*</span></label>
+
+  <ng-content></ng-content>
+
+  <div *ngIf="hasError()">
+    <span class="has-error-text" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </span>
+
+    <span class="has-error-text" *ngIf="this.input.errors.required">
+      <b>{{ label }}</b> Requerido
+    </span>
+  </div>
+
+</div>

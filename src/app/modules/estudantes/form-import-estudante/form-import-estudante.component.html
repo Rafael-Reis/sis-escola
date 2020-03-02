@@ -1,0 +1,61 @@
+<ng-container *ngIf="!importacao">
+  <div class="p-grid">
+    <div class="p-col-5">
+
+
+      <div class="mb-2" style="background-color: khaki; padding: 10px; border: solid 1px orange;">
+        <ul style="margin: 0; padding-left: 20px">
+          <li>A Planilha deve ser .xslx(Excel) ou .csv(valores separados por vírgulas)</li>
+          <li>Uma importação não pode ser realizada com Ano letivo já cadastrado, por segurança será negada!</li>
+          <li>A Planilha deve obedecer a estrutura da imagem ao lado, ou baixe o modelo prontro!</li>
+        </ul>
+        <div class="mt-2">
+          <p-button icon="pi pi-download" iconPos="left" styleClass="ui-button-success" label="Donwload da planilha modelo" (onClick)="downloadPlanilha()" class="ui-button-success"></p-button>
+        </div>
+      </div>
+
+      <div>
+        <form [formGroup]="formImport">
+          <p-fieldset legend="DADOS DE IMPORTAÇÂO">
+
+            <div class="mb-1">
+              <app-form-input label="Ano Letivo">
+                <input pInputText class="w-100" formControlName="ano" type="text"/>
+              </app-form-input>
+            </div>
+
+           <!-- <div class="mb-1">
+              <app-form-input>
+                <p-checkbox label="Gerar Turmas" formControlName="turma"></p-checkbox>
+              </app-form-input>
+            </div>
+-->
+            <div class="mb-2">
+              <label class="d-block">Planilha</label>
+              <input type="file" (change)="selectFile($event)" accept=".csv, .xlsx">
+            </div>
+
+            <p-button *ngIf="!submit"  label="Importar" (onClick)="formSubmit()"></p-button>
+          </p-fieldset>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="p-col-7">
+
+      <img style="width: 100%" src="assets/images/planilha-de-importacao.png"/>;
+
+    </div>
+
+  </div>
+</ng-container>
+
+<ng-container *ngIf="importacao">
+
+ <div class="ui-messages ui-messages-success">
+  <h1 class="text-center d-block">
+    <i class="pi pi-check"></i>Importação Concluida
+  </h1>
+ </div>
+</ng-container>

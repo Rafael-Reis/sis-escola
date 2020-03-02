@@ -1,0 +1,40 @@
+<div class="mb-2">
+  <h2>Nome do Cliente <i>(Estudantes, Funcionários)</i> </h2>
+
+  <p-autoComplete
+    styleClass="w-100"
+    inputStyleClass="w-100 input-lg"
+    [(ngModel)]="text"
+    field="nome"
+    (onSelect)="selectCliente($event)"
+    [suggestions]="results"
+    (completeMethod)="search($event)">
+
+      <ng-template let-data pTemplate="item">
+
+        <ng-template [ngIf]="data.hasOwnProperty('turma')" [ngIfElse]="funcionario">
+          <span>{{ data.nome }}</span>
+          <span> - </span>
+          <span>{{ data.turma.nome }}</span>
+        </ng-template>
+
+        <ng-template #funcionario>
+          <span>{{ data.nome }}</span>
+          <span> - </span>
+          <span>Funcionário</span>
+        </ng-template>
+
+      </ng-template>
+  </p-autoComplete>
+</div>
+
+<div class="mb-2">
+  <p-radioButton
+    *ngFor="let item of tipos"
+    name="tipoCliente"
+    labelStyleClass="mr-2"
+    [(ngModel)]="tipo"
+    [label]="item.label"
+    [value]="item.value">
+  </p-radioButton>
+</div>
