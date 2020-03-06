@@ -2,7 +2,6 @@
   <div class="p-grid">
     <div class="p-col-5">
 
-
       <div class="mb-2" style="background-color: khaki; padding: 10px; border: solid 1px orange;">
         <ul style="margin: 0; padding-left: 20px">
           <li>A Planilha deve ser .xslx(Excel) ou .csv(valores separados por vírgulas)</li>
@@ -15,28 +14,19 @@
       </div>
 
       <div>
-        <form [formGroup]="formImport">
-          <p-fieldset legend="DADOS DE IMPORTAÇÂO">
+        <form (ngSubmit)="formSubmit()" >
+          <div class="mb-2">
+            <app-form-input label="Ano Letivo">
+              <input pInputText type="text" [(ngModel)]="ano" pattern="[0-9]{4}"/>
+            </app-form-input>
+          </div>
 
-            <div class="mb-1">
-              <app-form-input label="Ano Letivo">
-                <input pInputText class="w-100" formControlName="ano" type="text"/>
-              </app-form-input>
-            </div>
+          <div class="mb-2">
+            <label class="d-block font-bold mb-1">Selecione a Planilha</label>
+            <input type="file" (change)="selectFile($event)" accept=".csv, .xlsx">
+          </div>
 
-           <!-- <div class="mb-1">
-              <app-form-input>
-                <p-checkbox label="Gerar Turmas" formControlName="turma"></p-checkbox>
-              </app-form-input>
-            </div>
--->
-            <div class="mb-2">
-              <label class="d-block">Planilha</label>
-              <input type="file" (change)="selectFile($event)" accept=".csv, .xlsx">
-            </div>
-
-            <p-button *ngIf="!submit"  label="Importar" (onClick)="formSubmit()"></p-button>
-          </p-fieldset>
+          <p-button *ngIf="!submit" type="submit" label="Importar"></p-button>
         </form>
       </div>
 

@@ -1,0 +1,9 @@
+<form [formGroup]="configForm">
+  <app-form-input label="Itens por página">
+    <p-dropdown [options]="selectPorPagina" formControlName="porPagina"></p-dropdown>
+  </app-form-input>
+
+  <app-form-input label="Itens por página">
+    <p-dropdown [options]="selectTempoToken" formControlName="tempoToken"></p-dropdown>
+  </app-form-input>
+</form>

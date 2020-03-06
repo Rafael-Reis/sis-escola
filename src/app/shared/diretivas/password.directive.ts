@@ -7,13 +7,12 @@ export class PasswordDirective  {
 
   constructor(private el: ElementRef) {}
 
-  @HostListener('focus', ['$event'])
-  exibir(event) {
-    console.log('passou')
+  @HostListener('focus')
+  exibir() {
     this.el.nativeElement.setAttribute('type', 'text');
   }
-
-  @HostListener('blur', ['$event'])
+c
+  @HostListener('blur')
   ocultar() {
     this.el.nativeElement.setAttribute('type', 'password');
   }

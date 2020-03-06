@@ -10,17 +10,11 @@ import { Paginacao } from './../../shared/models/paginacao.model';
 import { Turma } from '../turmas/turma.model';
 
 import { FormCadastroEstudanteComponent } from './form-cadastro-estudante/form-cadastro-estudante.component';
-import { FormImportEstudanteComponent} from './form-import-estudante/form-import-estudante.component';
 import { PesquisarEstudanteComponent } from './pesquisar-estudante/pesquisar-estudante.component';
 
 @Component({
   selector: 'app-estudantes',
   templateUrl: './estudantes.component.html',
-  entryComponents: [
-    FormCadastroEstudanteComponent,
-    FormImportEstudanteComponent
-  ],
-  providers: [DialogService]
 })
 export class EstudantesComponent implements OnInit {
   estudante: Estudante;
@@ -179,13 +173,6 @@ export class EstudantesComponent implements OnInit {
 
     });
 
-  }
-
-  showModalFormImport(){
-    const ref = this.dialogService.open(FormImportEstudanteComponent, {
-      header: 'Importar Estudantes',
-      width: '80%',
-    });
   }
 
   excluir(estudante: Estudante) {

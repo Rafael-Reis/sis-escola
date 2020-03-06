@@ -1,0 +1,9 @@
+<h2>Backup</h2>
+<app-form-input label="Periodo">
+  <p-dropdown [options]="selectIntervalo" [(ngModel)]="intervalo"></p-dropdown>
+  <span>Utimo Backup: nunca</span>
+</app-form-input>
+
+<h2>Importação</h2>
+
+<p-button type="button" label="Estudantes" icon="pi pi-upload" styleClass="ui-button-success" (onClick)="showModalFormImport()"></p-button>

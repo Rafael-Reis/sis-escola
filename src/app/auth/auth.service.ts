@@ -21,7 +21,7 @@ export class AuthService {
   user: User;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.user = JSON.parse(localStorage.getItem(this.key));
+    this.user = JSON.parse(sessionStorage.getItem(this.key));
   }
 
 
@@ -34,7 +34,7 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/auth/login`, {username: username, password:password}).pipe(
       map((user: User) => {
         this.user = user;
-        localStorage.setItem(this.key, JSON.stringify(user));
+        sessionStorage.setItem(this.key, JSON.stringify(user));
       }
     ));
   }
@@ -42,7 +42,7 @@ export class AuthService {
   logout() {
     this.http.get(`${environment.apiUrl}/auth/logout`).subscribe(() => {
       this.user = null;
-      localStorage.removeItem(this.key);
+      sessionStorage.removeItem(this.key);
       this.redirectLoginPage();
       console.log('logout!');
     });
@@ -61,7 +61,7 @@ export class AuthService {
       }
 
       this.user = user;
-      localStorage.setItem(this.key, JSON.stringify(user));
+      sessionStorage.setItem(this.key, JSON.stringify(user));
 
       return true;
 

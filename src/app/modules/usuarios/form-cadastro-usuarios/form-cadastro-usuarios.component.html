@@ -2,16 +2,16 @@
   <form  [formGroup]="usuarioForm">
 
     <app-form-input label="Nome" [required]="true">
-      <input class="w-100" type="text" formControlName="name" pInputText>
+      <input class="w-100" type="text" formControlName="name" pInputText/>
     </app-form-input>
 
     <app-form-input label="E-mail">
-      <input class="w-100" type="text" formControlName="email" pInputText>
+      <input class="w-100" type="text" formControlName="email" pInputText/>
     </app-form-input>
 
     <div *ngIf="!ocultarSenha; else ocultar">
-      <app-form-input  label="Senha" [required]="user ? false : true ">
-        <input class="w-100" type="password" formControlName="password" appPassword pInputText>
+      <app-form-input label="Senha" [required]="user ? false : true ">
+        <input class="w-100" type="password" formControlName="password" appPassword pInputText/>
       </app-form-input>
 
       <div *ngIf="usuarioForm.enabled" class="mb-1">

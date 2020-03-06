@@ -12,7 +12,6 @@
   left: 0;
   padding: 0px;
   box-sizing: border-box;
-  background-color: $primary;
   border-right:solid 1px #DDD !important;
 }
 #container-conteudo{
@@ -20,8 +19,11 @@
   margin-left: 200px;
 }
 #container-menu #logo{
-  padding: 5px 10px;
+  padding: 10px 10px;
+  background-color: $primary;
   img{
+    width: auto;
+    max-height: 32px;
     max-width: 100%;
     height: auto;
   }

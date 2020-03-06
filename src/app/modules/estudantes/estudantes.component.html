@@ -16,7 +16,6 @@
       <i class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
 
       <button pButton type="button" title="Exportar Planilha"    icon="pi pi-file-excel" (click)="exportarPlanilha()"     class="ui-button-success mr-1"></button>
-      <button *ngIf="acessoService.isPermitido()" pButton type="button" title="Importar Estuadantes" icon="pi pi-upload"     (click)="showModalFormImport()"  class="ui-button-danger"></button>
     </div>
   </p-toolbar>
 </div>
