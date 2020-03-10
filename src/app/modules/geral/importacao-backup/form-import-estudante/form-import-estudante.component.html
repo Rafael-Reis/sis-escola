@@ -17,7 +17,7 @@
         <form (ngSubmit)="formSubmit()" >
           <div class="mb-2">
             <app-form-input label="Ano Letivo">
-              <input pInputText type="text" [(ngModel)]="ano" pattern="[0-9]{4}"/>
+              <input pInputText type="text" [(ngModel)]="ano" [ngModelOptions]="{standalone: true}" pattern="[0-9]{4}"/>
             </app-form-input>
           </div>
 

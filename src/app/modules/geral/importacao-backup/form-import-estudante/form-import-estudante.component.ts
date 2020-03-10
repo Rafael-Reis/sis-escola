@@ -1,3 +1,4 @@
+import { ImportacaoBackupService } from './../importacao-backup.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -16,7 +17,7 @@ export class FormImportEstudanteComponent implements OnInit {
   submit = false;
 
   constructor(
-    private estudanteService: EstudanteService,
+    private ImportacaoBackupService: ImportacaoBackupService,
     private toastService: ToastService) { }
 
   ngOnInit() {}
@@ -27,7 +28,7 @@ export class FormImportEstudanteComponent implements OnInit {
   }
 
   downloadPlanilha() {
-    this.estudanteService.downloadimModeloPlanilha();
+    this.ImportacaoBackupService.downloadPlanilhaEstudantes();
   }
 
   formSubmit() {
@@ -39,7 +40,7 @@ export class FormImportEstudanteComponent implements OnInit {
 
       this.submit = true;
 
-      this.estudanteService.import(formData).subscribe( () => {
+      this.ImportacaoBackupService.importEstudantes(formData).subscribe( () => {
         this.importacao = true;
         this.toastService.showSuccess("Importação Concluida!");
       }, error => {
