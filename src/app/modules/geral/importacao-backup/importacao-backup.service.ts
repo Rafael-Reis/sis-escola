@@ -11,24 +11,16 @@ export class ImportacaoBackupService {
 
   constructor(private http: HttpClient, private fileSaverService: FileSaverService) { }
 
-  atualizarFrequenciaBackup(data) {
+  update(data) {
     return this.http.put(`${environment.apiUrl}/backup`, data);
   }
 
-  executarBackup() {
-    return this.http.get(`${environment.apiUrl}/backup/executar`);
+  create() {
+    return this.http.post(`${environment.apiUrl}/backup`, {});
   }
 
-  getParametrosFrequenciaBackup() {
-    return this.http.get(`${environment.apiUrl}/backup/frequencias`);
-  }
-
-  getUltimoBackup() {
-    return this.http.get(`${environment.apiUrl}/backup/ultimo`);
-  }
-
-  getFrequenciaBackup() {
-    return this.http.get(`${environment.apiUrl}/backup/frequencia`);
+  getStatus() {
+    return this.http.get(`${environment.apiUrl}/backup/status`);
   }
 
   importEstudantes(formData: any) {

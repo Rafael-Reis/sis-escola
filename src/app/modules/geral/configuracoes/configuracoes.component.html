@@ -1,9 +1,11 @@
-<form [formGroup]="configForm">
+<form [formGroup]="configForm" (ngSubmit)="formSubmit()" >
   <app-form-input label="Itens por página">
-    <p-dropdown [options]="selectPorPagina" formControlName="porPagina"></p-dropdown>
+    <p-dropdown [options]="optionsItensPorPagina" formControlName="itensPorPagina"></p-dropdown>
   </app-form-input>
 
-  <app-form-input label="Itens por página">
-    <p-dropdown [options]="selectTempoToken" formControlName="tempoToken"></p-dropdown>
+  <app-form-input label="Duração de atividade">
+    <p-dropdown [options]="optionsTempoAtividade" formControlName="tempoAtividade"></p-dropdown>
   </app-form-input>
+
+  <p-button type="submit" label="Salvar"></p-button>
 </form>

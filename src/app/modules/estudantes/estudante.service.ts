@@ -40,18 +40,6 @@ export class EstudanteService {
     return this.http.get(`${environment.apiUrl}/estudantes/page/${turmaId}?page=${pageNum}`);
   }
 
-  import(formData: any) {
-    return this.http.post(`${environment.apiUrl}/importar`, formData);
-  }
-
-  downloadimModeloPlanilha() {
-    return this.http.get(`${environment.apiUrl}/importar/planilha`, {
-      responseType: 'blob'
-    }).subscribe( (data: Blob)=>{
-      this.fileSaverService.save(data, 'planilha_importacao.xlsx');
-    });
-  }
-
   downloadPlanilhaAlunosPorTurma(turmaId: number, fileName: string = null) {
 
     if(fileName !== null){

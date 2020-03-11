@@ -1,5 +1,8 @@
+import { ToastService } from './../../../shared/components/toast/toast.service';
+import { ParametrosConfiguracoes, Configuracoes } from './configuracoes.model';
+import { ConfiguracoesService } from './configuracoes.service';
 import { SelectItem } from 'primeng/api';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,35 +13,63 @@ export class ConfiguracoesComponent implements OnInit {
 
   configForm: FormGroup;
 
-  selectPorPagina: SelectItem[] = [];
-  selectTempoToken: SelectItem[] = [];
+  optionsItensPorPagina: SelectItem[] = [];
+  optionsTempoAtividade: SelectItem[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private toastService: ToastService,  private configuracoesService: ConfiguracoesService) { }
 
   ngOnInit() {
 
     this.createForm();
     this.setValuesSelect();
-
+    this.loadConfiguracoes();
 
   }
 
   createForm() {
 
     this.configForm = this.fb.group({
-      porPagina: [''],
-      tempoToken: ['']
+      itensPorPagina: ['', Validators.required],
+      tempoAtividade: ['', Validators.required]
     });
 
   }
 
-  setValuesSelect() {
-    for(let i = 1; i <= 5;  i++) {
-      this.selectPorPagina.push({label: (i * 5).toString(), value: (i * 5)});
-    }
+  loadConfiguracoes() {
+    this.configuracoesService.getConfiguracoes().subscribe( (config: Configuracoes) => {
+      console.log(config)
+      this.configForm.patchValue({
+        itensPorPagina: config.itensPorPagina,
+        tempoAtividade: config.tempoAtividade
+      });
+    });
+  }
 
-    for(let i = 1; i <= 4;  i++) {
-      this.selectTempoToken.push({label: (i * 30) + ' min', value: (i * 30)});
+  setValuesSelect() {
+    this.configuracoesService.getParametros().subscribe((parametros: ParametrosConfiguracoes) => {
+
+      parametros.itensPorPagina.forEach( item => {
+        this.optionsItensPorPagina.push({label: item.toString(), value: item });
+      });
+
+      parametros.tempoAtividade.forEach( item => {
+        this.optionsTempoAtividade.push({label: item.toString(), value: item });
+      });
+
+
+    });
+
+  }
+
+  formSubmit() {
+    if(this.configForm.valid) {
+      this.configuracoesService.update(this.configForm.value).subscribe((data: any) => {
+        this.toastService.showSuccess(data.message);
+      }, error => {
+        this.toastService.showError("Falha na operação!");
+      });
+    } else {
+      this.toastService.showWarn("Formulário Inválido!");
     }
   }
 

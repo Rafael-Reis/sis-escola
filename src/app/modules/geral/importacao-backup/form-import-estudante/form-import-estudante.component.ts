@@ -17,7 +17,7 @@ export class FormImportEstudanteComponent implements OnInit {
   submit = false;
 
   constructor(
-    private ImportacaoBackupService: ImportacaoBackupService,
+    private importacaoBackupService: ImportacaoBackupService,
     private toastService: ToastService) { }
 
   ngOnInit() {}
@@ -28,7 +28,7 @@ export class FormImportEstudanteComponent implements OnInit {
   }
 
   downloadPlanilha() {
-    this.ImportacaoBackupService.downloadPlanilhaEstudantes();
+    this.importacaoBackupService.downloadPlanilhaEstudantes();
   }
 
   formSubmit() {
@@ -40,12 +40,12 @@ export class FormImportEstudanteComponent implements OnInit {
 
       this.submit = true;
 
-      this.ImportacaoBackupService.importEstudantes(formData).subscribe( () => {
+      this.importacaoBackupService.importEstudantes(formData).subscribe( () => {
         this.importacao = true;
         this.toastService.showSuccess("Importação Concluida!");
       }, error => {
 
-        if(error.status == 422) {
+        if(error.status === 422) {
           this.toastService.showWarn(error.error);
         } else {
           //console.log(error);
@@ -56,7 +56,7 @@ export class FormImportEstudanteComponent implements OnInit {
     } else {
       console.log('Fom inválido')
     }
-   // this.estudanteService.import(formData);
+
   }
 
 }

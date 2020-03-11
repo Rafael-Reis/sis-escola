@@ -6,7 +6,7 @@
       <p-button type="button" label="Realizar Backup" icon="pi pi-save" styleClass="ml-2 ui-button-secondary" (onClick)="executarBackup()"></p-button>
     </app-form-input>
 
-    <p>Ultimo Backup: <i>{{ this.backup?.created_at | date}}</i></p>
+    <p>Ultimo Backup: <i>{{ this.statusBackup?.backup.created_at | date}}</i></p>
 
   </div>
 

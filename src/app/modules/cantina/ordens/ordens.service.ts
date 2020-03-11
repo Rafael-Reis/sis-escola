@@ -53,11 +53,8 @@ export class OrdensService {
   }
 
   finalizarOrdem(ordem: Ordem) {
-    //console.log("Venda Realizada")
-    console.log(ordem)
     return this.http.post(`${environment.apiUrl}/ordens`, ordem);
   }
-
 
   getOrdensPage(current: number) {
     return this.http.get(`${environment.apiUrl}/ordens/page?page=${current}`);

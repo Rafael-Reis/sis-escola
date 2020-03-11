@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormImportEstudanteComponent } from './form-import-estudante/form-import-estudante.component';
 
-export interface Backup {
-  localizacao: string;
-  created_at: Date;
+export interface StatusBackup {
+  frequencia: number;
+  frequencias: number[];
+  backup: {
+    localizacao: string;
+    created_at: Date;
+  }
 }
 
 @Component({
@@ -18,9 +22,9 @@ export interface Backup {
 export class ImportacaoBackupComponent implements OnInit {
   anoLetivo: string;
   planilha: File;
-  backup: Backup;
 
   frequencia: number;
+  statusBackup: StatusBackup;
   optionsFrequencia: SelectItem[] = [];
 
   constructor(
@@ -29,30 +33,25 @@ export class ImportacaoBackupComponent implements OnInit {
     private importacaoBackupService: ImportacaoBackupService) { }
 
   ngOnInit() {
+    this.getStatusBackup();
+  }
 
-    this.importacaoBackupService.getParametrosFrequenciaBackup()
-    .subscribe((param: number[]) => {
-      param.forEach( i => {
-        this.optionsFrequencia.push({label: 'há cada ' + i + ' dias' , value: i});
-      });
+  getStatusBackup() {
+    this.importacaoBackupService.getStatus().subscribe( (StatusBackup: StatusBackup) => {
+      this.frequencia = StatusBackup.frequencia;
+      this.statusBackup = StatusBackup;
+
+      if(StatusBackup.frequencias.length > 0) {
+        StatusBackup.frequencias.forEach( i => {
+          this.optionsFrequencia.push({label: 'ha cada ' + i + ' dias', value: i });
+        });
+      }
+
     });
-
-    this.importacaoBackupService.getFrequenciaBackup()
-    .subscribe( (frequencia: number) => {
-      this.frequencia = frequencia ;
-
-      console.log(this.frequencia)
-    });
-
-    this.importacaoBackupService.getUltimoBackup()
-    .subscribe( (backup: Backup) => {
-      this.backup = backup;
-    });
-
   }
 
   executarBackup() {
-    this.importacaoBackupService.executarBackup().subscribe( (data: any) => {
+    this.importacaoBackupService.create().subscribe( (data: any) => {
       this.toastService.showSuccess(data.message);
     }, error => {
       this.toastService.showError('Falha na geração do Backup!');
@@ -68,7 +67,7 @@ export class ImportacaoBackupComponent implements OnInit {
 
   formSubmit() {
     if(this.frequencia) {
-      this.importacaoBackupService.atualizarFrequenciaBackup({frequencia: this.frequencia})
+      this.importacaoBackupService.update({frequencia: this.frequencia})
       .subscribe((data: any) => {
         this.toastService.showSuccess(data.message);
       });
