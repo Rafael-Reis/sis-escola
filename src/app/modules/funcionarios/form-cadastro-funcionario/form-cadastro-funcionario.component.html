@@ -1,0 +1,46 @@
+
+
+
+<p-tabView>
+  <p-tabPanel header="Dados Pessoais">
+    <div class="p-grid">
+      <div class="p-col-6">
+        <form [formGroup]="funcionarioForm" (ngSubmit)="formSubmit()">
+
+          <app-form-input label="Nome" [required]="true">
+            <input class="w-100" formControlName="nome" pInputText/>
+          </app-form-input>
+
+          <label class="d-block font-bold mb-1">Data de Nascimento</label>
+          <app-form-input-data [data]="funcionario ? funcionario?.dataNascimento : null" [dataString]="true" (selectData)="funcionarioForm.get('dataNascimento').setValue($event)"></app-form-input-data>
+
+          <app-form-input label="Sexo" [required]="true">
+            <span class="mr-2">
+              <p-radioButton label="Masculino" name="sexo" value="m" formControlName="sexo"></p-radioButton>
+            </span>
+            <p-radioButton label="Feminino" name="sexo" value="f" formControlName="sexo"></p-radioButton>
+          </app-form-input>
+
+          <app-form-input label="E-mail">
+            <input class="w-100" formControlName="email" pInputText/>
+          </app-form-input>
+
+          <app-form-input label="Celular" [required]="true">
+            <p-inputMask styleClass="w-100" formControlName="celular" [unmask]="true"  mask="(99) 9 9999-9999"></p-inputMask>
+          </app-form-input>
+
+          <app-form-input label="Função" [required]="true">
+             <p-dropdown styleClass="w-100" placeholder="Selecione" [options]="optionsFuncoes" formControlName="funcaoId"></p-dropdown>
+          </app-form-input>
+
+          <p-button type="submit" [label]="funcionario ? 'Atualizar' : 'Salvar' "></p-button>
+
+        </form>
+      </div>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel header="Cantina">
+
+  </p-tabPanel>
+</p-tabView>

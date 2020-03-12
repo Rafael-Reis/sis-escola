@@ -21,18 +21,16 @@ export class ConfiguracoesComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
-    this.setValuesSelect();
     this.loadConfiguracoes();
+    this.setValuesSelect();
 
   }
 
   createForm() {
-
     this.configForm = this.fb.group({
       itensPorPagina: ['', Validators.required],
       tempoAtividade: ['', Validators.required]
     });
-
   }
 
   loadConfiguracoes() {
@@ -55,7 +53,6 @@ export class ConfiguracoesComponent implements OnInit {
       parametros.tempoAtividade.forEach( item => {
         this.optionsTempoAtividade.push({label: item.toString(), value: item });
       });
-
 
     });
 

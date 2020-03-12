@@ -1,6 +1,6 @@
 
 
-@each $iconName in 'user' 'dashboard' 'cantina' 'product' 'report' 'estudante' 'money' 'note' 'turma' 'fast-food' 'shopping-bag' 'cog' 'cap' 'payment-terminal' 'equipe' {
+@each $iconName in 'user' 'teamwork' 'dashboard' 'cantina' 'product' 'report' 'estudante' 'money' 'note' 'turma' 'fast-food' 'shopping-bag' 'cog' 'cap' 'payment-terminal' 'equipe' {
   .icon-#{$iconName} {
     &:after{
       display: inline-block;

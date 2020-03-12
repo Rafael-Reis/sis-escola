@@ -20,10 +20,10 @@
 }
 #container-menu #logo{
   padding: 10px 10px;
-  background-color: $primary;
+  border-bottom: solid 1px darken($indigo, 5%);
   img{
     width: auto;
-    max-height: 32px;
+    max-height: 36px;
     max-width: 100%;
     height: auto;
   }

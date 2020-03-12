@@ -21,6 +21,7 @@ export class AppComponent {
       {label: 'Painel', routerLink:'painel', routerLinkActiveOptions: '{exact: true}', icon: 'icon-dashboard mr-2'},
       {label: 'Cantina', routerLink:'cantina', routerLinkActiveOptions: '{exact: true}', icon: 'icon-cantina mr-2'},
       {label: 'Estudantes', routerLink:'estudantes', routerLinkActiveOptions: '{exact: true}', icon: 'icon-estudante mr-2'},
+      {label: 'Funcionarios', routerLink:'funcionarios', routerLinkActiveOptions: '{exact: true}', icon: 'icon-teamwork mr-2'},
       {label: 'Turmas', routerLink:'turmas', routerLinkActiveOptions: '{exact: true}', icon: 'icon-turma mr-2'},
       {label: 'Usuarios', routerLink:'usuarios', routerLinkActiveOptions: '{exact: true}', icon: 'icon-equipe mr-2'},
       {label: 'Geral', routerLink:'geral', routerLinkActiveOptions: '{exact: true}', icon: 'icon-cog mr-2'}

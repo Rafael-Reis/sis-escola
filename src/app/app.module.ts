@@ -33,9 +33,6 @@ import { FormLoginComponent } from './auth/form-login/form-login.component';
     BrowserAnimationsModule,
     PainelModule,
   ],
-  exports:[
-
-  ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

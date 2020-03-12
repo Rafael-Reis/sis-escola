@@ -1,0 +1,63 @@
+
+<div class="mb-2">
+  <p-toolbar>
+    <div class="ui-toolbar-group-left">
+      <button pButton type="button" icon="pi pi-plus" label="Novo" class="ui-button-primary" (click)="showModalFormCadastro()"></button>
+    </div>
+
+    <div class="ui-toolbar-group-right">
+      <div class="ui-inputgroup" style="display: inline-block;">
+        <p-autoComplete placeholder="Nome" field="nome" [suggestions]="results" (onSelect)="selectSearch($event)" (completeMethod)="search($event)"></p-autoComplete>
+        <span class="ui-inputgroup-addon"><i class="pi pi-search"></i></span>
+      </div>
+    </div>
+  </p-toolbar>
+</div>
+
+<ng-container>
+  <p-table
+    [columns]="cols"
+    [value]="funcionarios"
+    [paginator]="paginacao?.perPage < paginacao?.total"
+    [rows]="paginacao?.perPage"
+    [totalRecords]="paginacao?.total"
+    [lazy]="true"
+    (onLazyLoad)="loadLazy($event)"
+    (onRowSelect)="onRowSelect($event)"
+    selectionMode="single"
+    dataKey="id"
+    [loading]="tableLoading">
+
+    <ng-template pTemplate="caption">
+      {{ title }}
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr class="text-left">
+        <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-funcionario>
+      <tr [pSelectableRow]="funcionario">
+        <td>{{ funcionario?.nome | uppercase }}</td>
+        <td>{{ funcionario?.dataNascimento | date:'shortDate' }}</td>
+        <td>
+          {{ funcionario.situacao | uppercase  }}
+        </td>
+        <td class="text-center">{{ funcionario?.sexo | uppercase }}</td>
+        <td>
+          <p-button styleClass="ui-button-secondary" (onClick)="excluir(funcionario)" icon="pi pi-trash"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <span *ngIf="paginacao">
+        {{ "Total de Funcionários: " + paginacao?.total }}
+      </span>
+    </ng-template>
+
+  </p-table>
+</ng-container>
