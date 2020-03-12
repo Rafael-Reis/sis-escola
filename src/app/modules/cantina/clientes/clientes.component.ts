@@ -1,3 +1,4 @@
+import { FuncionariosService } from './../../funcionarios/funcionarios.service';
 import { Turma } from './../../turmas/turma.model';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef} from 'primeng/dynamicdialog';
@@ -5,6 +6,7 @@ import { DynamicDialogRef} from 'primeng/dynamicdialog';
 import { Estudante } from './../../estudantes/estudante.model';
 import { EstudanteService } from './../../estudantes/estudante.service';
 import { Cliente } from './cliente.model';
+import { Funcionario } from '../../funcionarios/funcionario.model';
 
 @Component({
   selector: 'app-clientes',
@@ -20,7 +22,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     public dialogDynamic: DynamicDialogRef,
-    private estudanteService: EstudanteService) { }
+    private estudanteService: EstudanteService,
+    private funcionariosService: FuncionariosService) { }
 
   ngOnInit() {
 
@@ -48,9 +51,9 @@ export class ClientesComponent implements OnInit {
 
     } else if(this.tipo === 'f'){
 
-      // this.funcionariosService.search(query).subscribe((clientes: any[]) => {
-      //   this.results = clientes;
-      // });
+      this.funcionariosService.search(query).subscribe((clientes: Funcionario[]) => {
+        this.results = clientes;
+      });
 
     }
 
