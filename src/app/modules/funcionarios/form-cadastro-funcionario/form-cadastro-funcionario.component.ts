@@ -29,7 +29,7 @@ export class FormCadastroFuncionarioComponent implements OnInit {
 
     if(this.dialogConfig.data){
        this.funcionario = this.dialogConfig.data.funcionario;
-       this.setValueForm(this.funcionario);
+       this.setValuesForm(this.funcionario);
     }
   }
 
@@ -45,7 +45,7 @@ export class FormCadastroFuncionarioComponent implements OnInit {
     });
   }
 
-  setValueForm(funcionario: Funcionario) {
+  setValuesForm(funcionario: Funcionario) {
     this.funcionarioForm.patchValue({
       id:             funcionario.id,
       nome:           funcionario.nome,

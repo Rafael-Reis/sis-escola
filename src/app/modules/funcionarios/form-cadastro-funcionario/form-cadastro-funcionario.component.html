@@ -30,7 +30,7 @@
           </app-form-input>
 
           <app-form-input label="Função" [required]="true">
-             <p-dropdown styleClass="w-100" placeholder="Selecione" [options]="optionsFuncoes" formControlName="funcaoId"></p-dropdown>
+             <p-dropdown styleClass="w-100" formControlName="funcaoId" [options]="optionsFuncoes"  placeholder="Selecione"></p-dropdown>
           </app-form-input>
 
           <p-button type="submit" [label]="funcionario ? 'Atualizar' : 'Salvar' "></p-button>
