@@ -5,8 +5,13 @@
 
 <ng-template #logged>
 
+  <div id="menu-header" class="bg-indigo">
+    <button (click)="toggleMenu()"><i class="pi pi-bars"></i></button>
+    <img src="assets/images/logo-light.svg">
+  </div>
+
   <div class="p-grid">
-    <div id="container-menu" class="p-col-fixed">
+    <div [@menuMobile]="isOpen ? 'open' : 'closed'" id="container-menu" class="p-col-fixed">
       <div id="logo" class="text-center bg-indigo">
         <img src="assets/images/logo-light.svg">
       </div>
@@ -14,7 +19,7 @@
       <div style="height: 50px;" class="p-1 text-white bg-indigo">
         <div class="float-left">
           <div style="padding: 6px 0px;">
-            {{ 'Olá, ' + getPrimeiroNome() }}
+            {{ 'Olá, ' + primeiroNome() }}
           </div>
         </div>
         <div class="float-right">

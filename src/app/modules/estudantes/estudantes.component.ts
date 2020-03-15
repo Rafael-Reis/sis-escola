@@ -113,7 +113,7 @@ export class EstudantesComponent implements OnInit {
   showModalFormCadastro(){
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Cadastrar Estudante',
-      width: '70%',
+      styleClass: 'dialog-large',
       data: {
         turmas: this.turmas,
         turma: this.turma
@@ -132,8 +132,7 @@ export class EstudantesComponent implements OnInit {
   showModalFormUpdate(){
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Editar Estudante',
-      width: '70%',
-      styleClass: 'overflow-dialog',
+      styleClass: 'dialog-large overflow-dialog ',
       data: {
         turmas: this.turmas,
         estudante: this.estudante,
@@ -161,7 +160,7 @@ export class EstudantesComponent implements OnInit {
   showModalSearch(){
     const ref = this.dialogService.open(PesquisarEstudanteComponent, {
       header: 'Procurar Estudante',
-      width: '70%',
+      styleClass: 'dialog-large',
     });
 
     ref.onClose.subscribe((estudante: Estudante) => {

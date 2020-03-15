@@ -1,6 +1,6 @@
 <div class="p-grid p-align-center">
 
-  <div class="p-col">
+  <div class="p-col-12 p-sm-4 p-md-4 p-lg-4">
     <a title="Produtos" [routerLink]="['/cantina/produtos']">
       <p-card header="Produtos">
         <p>Estoque dos produtos da cantina.</p>
@@ -9,7 +9,7 @@
     </a>
   </div>
 
-  <div *ngIf="acessoService.isPermitido()" class="p-col">
+  <div *ngIf="acessoService.isPermitido()" class="p-col-12 p-sm-4 p-md-4 p-lg-4">
     <a title="Relatórios" [routerLink]="['/cantina/relatorios',{outlets: { outletRelatorio: ['caixas'] } }]">
       <p-card header="Relatórios">
         <p>Veja os relátorios da cantina</p>
@@ -18,7 +18,7 @@
     </a>
   </div>
 
-  <div class="p-col">
+  <div class="p-col-12 p-sm-4 p-md-4 p-lg-4">
     <a title="Caixa" [routerLink]="['/cantina/caixa']">
       <p-card header="Caixa">
         <p>Faça as vendas da cantina</p>

@@ -14,7 +14,6 @@
 </div>
 
 <p-table
-  [columns]="cols"
   [value]="produtos"
   [paginator]="paginacao?.perPage < paginacao?.total"
   [rows]="paginacao?.perPage"
@@ -32,18 +31,21 @@
 
   <ng-template pTemplate="header">
     <tr class="text-left">
-      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-        {{col.header}}
-      </th>
+      <th class="ui-p-1">Nome</th>
+      <th class="ui-p-2">Categoria</th>
+      <th class="ui-p-2">Preço</th>
+      <th class="ui-p-2">Quantidade</th>
+      <th class="ui-p-1" style="width: 60px;"></th>
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-produto let-columns="cols">
     <tr [pSelectableRow]="produto">
-      <td>{{ produto?.nome | uppercase}}</td>
-      <td>{{ produto?.categoria.nome | uppercase}}</td>
-      <td class="text-success">{{ produto?.preco | currency:'BRL':true }}</td>
-      <td>{{ (produto?.estoque !== -1 ? produto?.estoque : 'ilimitado') | uppercase}}</td>
-      <td>
+      <td class="ui-p-1">{{ produto?.nome | uppercase}}</td>
+      <td class="ui-p-2">{{ produto?.categoria.nome | uppercase}}</td>
+      <td class="ui-p-2 text-success">{{ produto?.preco | currency:'BRL':true }}</td>
+      <td class="ui-p-2">{{ (produto?.estoque !== -1 ? produto?.estoque : 'ilimitado') | uppercase}}</td>
+      <td class="ui-p-1">
         <p-button [disabled]="acessoService.isNegado()" icon="pi pi-trash" styleClass="ui-button-secondary" (onClick)="excluirProduto(produto)"></p-button>
       </td>
     </tr>

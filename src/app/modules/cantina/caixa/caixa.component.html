@@ -23,7 +23,7 @@
   </div>
 
   <div class="p-grid">
-    <div class="p-col-6">
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
 
       <div class="p-grid">
         <div class="p-col">
@@ -72,7 +72,7 @@
 
     </div>
 
-    <div class="p-col-6">
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
       <p-panel header="Venda">
 
         <div class="mb-1">
@@ -108,7 +108,7 @@
             </div>
 
             <div class="p-grid">
-              <div class="p-col-12 p-md-6 p-lg-7">
+              <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
                 <div>
                   <a class="item-pagamento" *ngFor="let item of formasDePagamento" (click)="item.command(item)" >
                     <span [class]="item.icon"></span>
@@ -117,10 +117,8 @@
                 </div>
               </div>
 
-              <div class="p-col-12 p-md-6 p-lg-5">
-                <div>
-                  <p-button label="Confirmar (ENTER)" styleClass="ui-button-success w-100 p-2" (onClick)="confirmar()" [disabled]="!hasValid() || submit"></p-button>
-                </div>
+              <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
+                <p-button label="Confirmar (ENTER)" styleClass="ui-button-success w-100 p-2" (onClick)="confirmar()" [disabled]="!hasValid() || submit"></p-button>
               </div>
             </div>
 

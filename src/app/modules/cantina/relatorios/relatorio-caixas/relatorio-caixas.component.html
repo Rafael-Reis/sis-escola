@@ -17,15 +17,18 @@
 
   <ng-template pTemplate="header">
     <tr class="text-left">
-      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-        {{col.header}}
-      </th>
+      <th>Aberto em</th>
+      <th>Fechado em</th>
+      <th>Operador</th>
+      <th>Suprimento</th>
+      <th>Total a Vista</th>
+      <th>Total a Prazo</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-caixa let-expanded="expanded" let-columns="cols">
     <tr [pSelectableRow]="caixa">
-      <td>{{ caixa?.dataAbertura | date: 'short'}}</td>
-      <td>
+      <td class="ui-p-1">{{ caixa?.dataAbertura | date: 'short'}}</td>
+      <td class="ui-p-1">
         <div *ngIf="caixa?.dataFechamento; else aberto">
           {{ caixa?.dataFechamento | date: 'short'}}
         </div>
@@ -34,10 +37,10 @@
           <p-button styleClass="ui-button-warning" label="Fechar este Caixa" (onClick)="fecharCaixa(caixa)"></p-button>
         </ng-template>
       </td>
-      <td>{{ caixa?.userAbertura.name }}</td>
-      <td>{{ caixa?.suprimento | currency:'BRL':true }}</td>
-      <td class="text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
-      <td class="text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
+      <td class="ui-p-2">{{ caixa?.userAbertura.name }}</td>
+      <td class="ui-p-2">{{ caixa?.suprimento | currency:'BRL':true }}</td>
+      <td class="ui-p-3 text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
+      <td class="ui-p-3 text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
     </tr>
   </ng-template>
 

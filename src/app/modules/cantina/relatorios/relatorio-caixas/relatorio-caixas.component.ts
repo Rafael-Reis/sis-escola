@@ -18,22 +18,12 @@ export class RelatorioCaixasComponent implements OnInit {
   currentPage = 1;
   paginacao: Paginacao;
 
-  cols: any[];
-
   loadingTable = true;
 
   constructor(private caixaService: CaixaService, private dialogService: DialogService) { }
 
   ngOnInit() {
 
-    this.cols = [
-      { field: 'dataAbertura', header: 'Aberto em', width: '' },
-      { field: 'dataFechamento', header: 'Fechado em', width: '' },
-      { field: 'userAbertura', header: 'Operador', width: '' },
-      { field: 'suprimento', header: 'Suprimento', width: '' },
-      { field: 'totalAvista', header: 'Vendas a vista', width: '' },
-      { field: 'totalAPrazo', header: 'Vendas a prazo', width: '' },
-    ];
   }
 
   loadLazy(event: LazyLoadEvent) {

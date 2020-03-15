@@ -24,7 +24,6 @@ export class ProdutosComponent implements OnInit {
   results:  Produto[];
   paginacao: Paginacao;
 
-  cols: any[];
   currentPage = 0;
   loadingTable = true;
 
@@ -36,22 +35,10 @@ export class ProdutosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.columns();
-
     this.produtosService.getCategorias().subscribe( (categorias: CategoriaProduto[]) =>{
       this.categorias = categorias;
     });
 
-  }
-
-  columns() {
-    this.cols = [
-      { field: 'nome',        header: 'Nome',         width: '' },
-      { field: 'categoria.nome',   header: 'Categoria',    width: '' },
-      { field: 'preco',       header: 'Preço',        width: '200px' },
-      { field: 'quantidade',  header: 'Quantidade',   width: '120px' },
-      { field: '',            header: '',             width: '60px' },
-    ];
   }
 
   loadLazy(event: LazyLoadEvent){
@@ -91,7 +78,7 @@ export class ProdutosComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroProdutoComponent, {
       data: {},
       header: 'Cadastrar Produto',
-      width: '400px',
+      styleClass: 'dialog-medium',
     });
 
     ref.onClose.subscribe((produto: Produto) => {
@@ -109,7 +96,7 @@ export class ProdutosComponent implements OnInit {
         categorias: this.categorias
       },
       header: 'Editar Produto',
-      width: '400px',
+      styleClass: 'dialog-medium',
     });
 
     ref.onClose.subscribe((data: Produto) => {

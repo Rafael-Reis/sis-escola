@@ -24,6 +24,7 @@
     "@angular/router": "~8.1.0",
     "file-saver": "^2.0.2",
     "ngx-currency": "^2.0.2",
+    "ngx-device-detector": "^1.4.0",
     "ngx-filesaver": "^8.1.0",
     "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",

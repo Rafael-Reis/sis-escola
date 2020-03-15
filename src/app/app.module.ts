@@ -11,6 +11,7 @@ registerLocaleData(localePt);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { SharedModule} from './shared/shared.module';
 import { PainelModule } from './modules/painel/painel.module';
@@ -31,7 +32,9 @@ import { FormLoginComponent } from './auth/form-login/form-login.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    DeviceDetectorModule.forRoot(),
     PainelModule,
+
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
