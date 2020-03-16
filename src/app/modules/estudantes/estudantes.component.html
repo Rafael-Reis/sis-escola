@@ -5,17 +5,13 @@
     </div>
 
     <div class="ui-toolbar-group-right">
-      <span class="mr-2">Turma:</span>
+
       <p-dropdown [options]="turmas" optionLabel="nome" (onChange)="selectTurma($event.value)"></p-dropdown>
 
       <i class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
 
-      <button pButton type="button" title="Recarregar Planilha"    icon="pi pi-refresh"    (click)="recarregarPlanilha()"     class="ui-button-secondary mr-1"></button>
-      <button pButton type="button" title="Pesquisar Estuadante" icon="pi pi-search"     (click)="showModalSearch()"      class="ui-button-primary"></button>
+      <p-splitButton label="Opções" styleClass="ui-button-success" [model]="optionsToolbar"></p-splitButton>
 
-      <i class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
-
-      <button pButton type="button" title="Exportar Planilha"    icon="pi pi-file-excel" (click)="exportarPlanilha()"     class="ui-button-success mr-1"></button>
     </div>
   </p-toolbar>
 </div>

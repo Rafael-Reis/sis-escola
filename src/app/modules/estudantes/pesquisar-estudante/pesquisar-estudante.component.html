@@ -1,13 +1,12 @@
-  <h2>Nome do Estudante</h2>
-
   <p-autoComplete
     styleClass="w-100"
     inputStyleClass="w-100 input-lg"
     [(ngModel)]="text"
     field="nome"
-    (onSelect)="selectCliente($event)"
+    (onSelect)="selectSearch($event)"
     [suggestions]="results"
-    (completeMethod)="search($event)">
+    (completeMethod)="search($event)"
+    placeholder="Nome">
 
       <ng-template let-data pTemplate="item">
         <span>{{ data?.nome + ' - ' + data?.turma.nome }}</span>
@@ -15,13 +14,3 @@
 
   </p-autoComplete>
 
-<div class="mb-2">
-  <p-radioButton
-    *ngFor="let item of tipos"
-    name="tipoCliente"
-    labelStyleClass="mr-2"
-    [(ngModel)]="tipo"
-    [label]="item.label"
-    [value]="item.value">
-  </p-radioButton>
-</div>

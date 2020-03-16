@@ -1,3 +1,4 @@
+import { SelectItem, MenuItem } from 'primeng/api';
 import { AcessoService } from './../../auth/acesso.service';
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -25,6 +26,7 @@ export class EstudantesComponent implements OnInit {
 
   text: string;
   results: Estudante[];
+  optionsToolbar: MenuItem[];
 
   currentPage = 0;
   tableLoading = true;
@@ -37,6 +39,12 @@ export class EstudantesComponent implements OnInit {
     private toast: ToastService  ) { }
 
   ngOnInit() {
+
+    this.optionsToolbar = [
+      {label: 'Atualizar',  icon:'pi pi-refresh',     command: () => this.getEstudantesTurma() },
+      {label: 'Buscar',     icon:'pi pi-search',      command: () => this.showModalSearch()    },
+      {label: 'Exportar',   icon:'pi pi-file-excel',  command: () => this.exportarPlanilha()   },
+    ]
 
   }
 
@@ -89,9 +97,6 @@ export class EstudantesComponent implements OnInit {
     });
   }
 
-  recarregarPlanilha() {
-    this.getEstudantesTurma();
-  }
 
   exportarPlanilha() {
     this.estudanteService.downloadPlanilhaAlunosPorTurma(this.turma.id, this.turma.nome);

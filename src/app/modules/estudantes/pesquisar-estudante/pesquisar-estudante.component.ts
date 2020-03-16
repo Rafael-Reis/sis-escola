@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef} from 'primeng/dynamicdialog';
-
 import { Estudante } from './../../estudantes/estudante.model';
 import { EstudanteService } from './../../estudantes/estudante.service';
 
@@ -10,9 +9,6 @@ import { EstudanteService } from './../../estudantes/estudante.service';
 })
 export class PesquisarEstudanteComponent implements OnInit {
   text: string;
-  tipo: any;
-  tipos: any[];
-
   estudante: Estudante;
   results: any[];
 
@@ -20,29 +16,17 @@ export class PesquisarEstudanteComponent implements OnInit {
     public dialogDynamic: DynamicDialogRef,
     private estudanteService: EstudanteService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-
-  }
-
-
-  search(event) {
-    const query = event.query;
-
-    this.estudanteService.search(query).subscribe((clientes: any[]) => {
+  search(event: any) {
+    this.estudanteService.search(event.query).subscribe((clientes: any[]) => {
       this.results = clientes;
     });
-
   }
 
-  selectCliente(data) {
+  selectSearch(data: Estudante) {
     this.estudante = data;
     this.dialogDynamic.close(this.estudante);
-  }
-
-  reset(){
-    this.text = null;
-    this.estudante = null;
   }
 
 }
