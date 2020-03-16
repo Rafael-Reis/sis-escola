@@ -40,13 +40,17 @@ export class EstudanteService {
     return this.http.get(`${environment.apiUrl}/estudantes/page/${turmaId}?page=${pageNum}`);
   }
 
+  atualizarPassaportes(data) {
+    return this.http.put(`${environment.apiUrl}/estudantes/passaportes`, data);
+  }
+
   downloadPlanilhaAlunosPorTurma(turmaId: number, fileName: string = null) {
 
     if(fileName !== null){
       fileName + '.xlsx';
     }
 
-    return this.http.get(`${environment.apiUrl}/relatorios/planilha/estudantes/${turmaId}`, {
+    return this.http.get(`${environment.apiUrl}/relatorios/estudantes/planilha/${turmaId}`, {
       responseType: 'blob'
     }).subscribe( (data: Blob)=>{
       this.fileSaverService.save(data, fileName);

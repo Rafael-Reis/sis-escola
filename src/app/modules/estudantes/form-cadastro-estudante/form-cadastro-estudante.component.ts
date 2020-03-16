@@ -25,8 +25,8 @@ export class FormCadastroEstudanteComponent implements OnInit {
   situacaoSelect: SelectItem[] = [];
 
   formEstudante: FormGroup;
-  numMaxPassaports = 3;
-  tiposPassaportes: any[];
+
+
 
   dataNascimento: any;
 
@@ -80,11 +80,6 @@ export class FormCadastroEstudanteComponent implements OnInit {
   }
 
   setSelectValues() {
-    this.tiposPassaportes = [
-      {label: 'COC', value: 'coc'},
-      {label: 'FEC Estudante', value: 'fec1'},
-      {label: 'FEC Pais', value: 'fec2'}
-    ];
 
     this.situacaoSelect = [
       {label: "Matriculado", value: 'matriculado'},
@@ -109,7 +104,7 @@ export class FormCadastroEstudanteComponent implements OnInit {
         bairro: [''],
         complemento: ['']
       }),
-      passaportes: this.fb.array([ this.createItemPassaportes() ]),
+
     });
   }
 
@@ -132,50 +127,9 @@ export class FormCadastroEstudanteComponent implements OnInit {
       },
     });
 
-    if(this.estudante.passaportes) {
-      this.removeItemPassaportes(0);
-
-      this.estudante.passaportes.forEach(item => {
-
-        this.getFormArrayPassaportes().push(this.fb.group({
-          login: item.login,
-          senha: item.senha,
-          tipo: item.tipo
-        }));
-
-      });
-    }
-
   }
 
-  /**
-   * formArray de Horarios
-  */
 
-  getFormArrayPassaportes(): FormArray {
-    return this.formEstudante.get('passaportes') as FormArray;
-  }
-
-  createItemPassaportes(): FormGroup {
-    return this.fb.group({login: '', senha: '', tipo: ''})
-  }
-
-  addItemPassaportes(): void {
-    this.getFormArrayPassaportes().push(this.createItemPassaportes());
-  }
-
-  removeItemPassaportes(i: number): void {
-    this.getFormArrayPassaportes().removeAt(i);
-  }
-
-  countItemsPassaportes() {
-    return this.getFormArrayPassaportes().length;
-  }
-
-  isPassaportTipoSelecionado(tipo: string){
-    const items = this.getFormArrayPassaportes().controls;
-    return items.find( (item) => tipo && tipo === item.value.tipo );
-  }
 
   setDataNacimento(dataNasc) {
     console.log("NASCIDO: " + dataNasc)

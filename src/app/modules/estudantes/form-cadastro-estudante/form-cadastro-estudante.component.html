@@ -1,8 +1,8 @@
-<form [formGroup]="formEstudante" (ngSubmit)="formSubmit()">
-  <p-tabView>
+<p-tabView>
 
-    <!--  TAB 1 -->
-    <p-tabPanel header="Dados Pessoais">
+  <!--  TAB 1 -->
+  <p-tabPanel header="Dados Pessoais">
+    <form [formGroup]="formEstudante" (ngSubmit)="formSubmit()">
       <div class="p-grid">
         <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
 
@@ -53,62 +53,20 @@
 
         </div>
       </div>
-    </p-tabPanel>
 
-    <!--  TAB 2 -->
-    <p-tabPanel header="Passaportes">
-        <div formArrayName="passaportes" *ngFor="let item of getFormArrayPassaportes().controls; let i = index;">
+      <p-button *ngIf="acessoService.isPermitido()" type="submit" [label]="estudante ? 'Atualizar' : 'Salvar'" [disabled]="submit"></p-button>
 
-          <div class="mb-1" [formGroupName]="i">
-            <div class="p-grid">
-              <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
-                <app-form-input label="Login">
-                  <input class="w-100" type="text" formControlName="login" pInputText/>
-                </app-form-input>
-              </div>
+    </form>
+  </p-tabPanel>
 
-              <div class="p-col-12 p-sm-5 p-md-5 p-lg-5">
-                <app-form-input label="Senha">
-                  <input id="password" class="w-100" type="password" formControlName="senha" appPassword pInputText/>
-                </app-form-input>
-              </div>
+  <!--  TAB 2 -->
+  <p-tabPanel header="Passaportes" *ngIf="estudante">
+    <app-form-cadastro-passaportes [estudante]="estudante"></app-form-cadastro-passaportes>
+  </p-tabPanel>
 
-              <div class="p-col-12 p-sm-1 p-md-1 p-lg-1">
-                <div *ngIf="countItemsPassaportes() === (i+1) && numMaxPassaports > (i+1); else btnRemove">
-                  <div style="margin-top: 25px; float: right;">
-                    <p-button type="button" icon="pi pi-plus" [disabled]="acessoService.isNegado()" (onClick)="addItemPassaportes()"></p-button>
-                  </div>
-                </div>
+  <!--  TAB 3 -->
+  <p-tabPanel *ngIf="estudante" header="Cantina">
+    <app-compras-cantina [estudanteId]="estudante?.id" ></app-compras-cantina>
+  </p-tabPanel>
 
-                <ng-template #btnRemove>
-                  <div style="margin-top: 25px; float: right;">
-                    <p-button type="button" icon="pi pi-minus" [disabled]="acessoService.isNegado()" styleClass="ui-button-secondary" (onClick)="removeItemPassaportes(i)"></p-button>
-                  </div>
-                </ng-template>
-              </div>
-            </div>
-
-            <div>
-              <span *ngFor="let item of tiposPassaportes" class="mr-1" >
-                <p-radioButton [name]="i" [label]="item.label" [value]="item.value" formControlName="tipo"></p-radioButton>
-              </span>
-            </div>
-          </div>
-
-        </div>
-    </p-tabPanel>
-
-    <!--  TAB 3 -->
-    <p-tabPanel *ngIf="estudante" header="Cantina">
-
-      <app-compras-cantina [estudanteId]="estudante?.id" ></app-compras-cantina>
-
-    </p-tabPanel>
-
-  </p-tabView>
-
-  <div class="mt-1">
-    <p-button *ngIf="acessoService.isPermitido()" type="submit" [label]="estudante ? 'Atualizar' : 'Salvar'" [disabled]="submit"></p-button>
-  </div>
-
-</form>
+</p-tabView>

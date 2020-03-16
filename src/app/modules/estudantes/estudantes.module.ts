@@ -6,6 +6,7 @@ import { FormCadastroEstudanteComponent } from './form-cadastro-estudante/form-c
 import { EstudantesComponent } from './estudantes.component';
 import { PesquisarEstudanteComponent } from './pesquisar-estudante/pesquisar-estudante.component';
 import { ComprasCantinaComponent } from './compras-cantina/compras-cantina.component';
+import { FormCadastroPassaportesComponent } from './form-cadastro-passaportes/form-cadastro-passaportes.component';
 
 const routes: Routes = [
   {path: '', component: EstudantesComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
     FormCadastroEstudanteComponent,
     PesquisarEstudanteComponent,
     PesquisarEstudanteComponent,
-    ComprasCantinaComponent
+    ComprasCantinaComponent,
+    FormCadastroPassaportesComponent
   ],
   entryComponents: [
     FormCadastroEstudanteComponent,

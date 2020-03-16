@@ -48,8 +48,12 @@ export class OrdensService {
     return this.cestaService.total();
   }
 
-  cancelarOrdem(id: number) {
-    return this.http.get(`${environment.apiUrl}/ordens/cancelar/${id}`);
+  cancelarOrdem(ordemId: number) {
+    return this.http.put(`${environment.apiUrl}/ordens/cancelar`, {id: ordemId});
+  }
+
+  restaurarOrdem(ordemId: number) {
+    return this.http.put(`${environment.apiUrl}/ordens/restaurar`, {id: ordemId});
   }
 
   finalizarOrdem(ordem: Ordem) {
