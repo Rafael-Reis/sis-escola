@@ -13,10 +13,19 @@
 
 #card-login{
   width: 380px;
+  min-height: 360px;
   height: auto;
   position: fixed;
   top: 50%;
   left: 50%;
   margin-top: -140px;
   margin-left: -190px;
+
+  @media screen and (max-width: 590px ) {
+    width: 90%;
+    left: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
+

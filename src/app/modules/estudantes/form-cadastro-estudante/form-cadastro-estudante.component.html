@@ -4,44 +4,43 @@
     <!--  TAB 1 -->
     <p-tabPanel header="Dados Pessoais">
       <div class="p-grid">
-        <div class="p-col-6">
+        <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
 
-          <div class="">
-            <app-form-input label="Nome">
-              <input class="w-100" type="text" formControlName="nome" pInputText>
-            </app-form-input>
-          </div>
+          <app-form-input label="Nome">
+            <input class="w-100" type="text" formControlName="nome" pInputText>
+          </app-form-input>
+
           <div class="">
             <label class="d-block font-bold mb-1">Data de Nascimento</label>
             <app-form-input-data [disabled]="acessoService.isNegado()" [data]="dataNascimento" [dataString]="true" (selectData)="setDataNacimento($event)"></app-form-input-data>
           </div>
 
           <div class="p-grid">
-            <div class="p-col-6">
+            <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
               <app-form-input label="E-mail">
                 <input class="w-100" type="text" formControlName="email" pInputText>
               </app-form-input>
             </div>
 
-            <div class="p-col-6">
+            <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
               <app-form-input label="Celular">
                 <p-inputMask styleClass="w-100"  type="tel" mask="(99)99999-9999" unmask="true" autoClear="true" formControlName="celular" characterPattern="[0-9]"></p-inputMask>
               </app-form-input>
             </div>
 
-            <div class="p-col-6">
+            <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
               <app-form-input label="Turma">
                 <p-dropdown label="Selecione" styleClass="w-100" [options]="turmasSelect" formControlName="turmaId"></p-dropdown>
               </app-form-input>
             </div>
 
-            <div class="p-col-6">
+            <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
               <app-form-input label="Situação">
                 <p-dropdown label="Selecione" styleClass="w-100" [options]="situacaoSelect" formControlName="situacao"></p-dropdown>
               </app-form-input>
             </div>
 
-            <div class="p-col-6">
+            <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
               <label class="d-block mb-1">Sexo: </label>
               <span class="mr-2">
                 <p-radioButton label="Masculino" name="sexo" value="m" formControlName="sexo"></p-radioButton>
@@ -62,20 +61,19 @@
 
           <div class="mb-1" [formGroupName]="i">
             <div class="p-grid">
-              <div class="p-col-6">
+              <div class="p-col-12 p-sm-6 p-md-6 p-lg-6">
                 <app-form-input label="Login">
                   <input class="w-100" type="text" formControlName="login" pInputText/>
                 </app-form-input>
               </div>
-              <div class="p-col-5">
 
+              <div class="p-col-12 p-sm-5 p-md-5 p-lg-5">
                 <app-form-input label="Senha">
                   <input id="password" class="w-100" type="password" formControlName="senha" appPassword pInputText/>
                 </app-form-input>
-
               </div>
 
-              <div class="p-col-1">
+              <div class="p-col-12 p-sm-1 p-md-1 p-lg-1">
                 <div *ngIf="countItemsPassaportes() === (i+1) && numMaxPassaports > (i+1); else btnRemove">
                   <div style="margin-top: 25px; float: right;">
                     <p-button type="button" icon="pi pi-plus" [disabled]="acessoService.isNegado()" (onClick)="addItemPassaportes()"></p-button>

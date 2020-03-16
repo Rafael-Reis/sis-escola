@@ -1,3 +1,4 @@
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { OrdemItem } from './ordem.model';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { ToastService } from './../../../shared/components/toast/toast.service';
@@ -17,28 +18,24 @@ export class OrdensComponent implements OnInit {
   ordens: OrdemItem[];
   paginacao: Paginacao;
 
-  @Input() caixaId?: number;
-  @Input() cancelamento?: boolean; //Habilita Cancelamento
+  @Input() caixaId: number;
+  @Input() cancelamento = false; //Habilita Cancelamento de uma ordem
 
-  cols: any[];
   currentPage = 0;
   loadingTable = true;
+  colspan = 7;
 
   constructor(
+    private deviceDetectorService: DeviceDetectorService,
     private ordensService: OrdensService,
     private dialogConfig: DynamicDialogConfig,
     private toastService: ToastService) { }
 
   ngOnInit() {
 
-    this.cols = [
-      { field: 'id', header: '', width: '45px' },
-      { field: 'created', header: 'Data', width: '150px' },
-      { field: 'cliente.nome', header: 'Cliente', width: '' },
-      { field: 'ordem.user.name', header: 'Operador', width: '' },
-      { field: 'pagamento', header: 'Pagamento', width: '100px' },
-      { field: 'total', header: 'Total', width: '' },
-    ];
+    if(this.deviceDetectorService.isMobile()) {
+      this.colspan = 3;
+    }
 
     if(this.dialogConfig.data && this.dialogConfig.data.hasOwnProperty('caixaId')) {
       if(this.dialogConfig.data.hasOwnProperty('caixaId')) {
@@ -50,11 +47,10 @@ export class OrdensComponent implements OnInit {
       }
     }
 
-    if(this.cancelamento) {
-      this.cols.push({field: '', header: '', width: '55px'})
-    }
 
   }
+
+
 
   loadLazy(event: LazyLoadEvent) {
     this.currentPage = 1 + ((event.first !== 0) ? Math.floor(event.first / event.rows) : 0);

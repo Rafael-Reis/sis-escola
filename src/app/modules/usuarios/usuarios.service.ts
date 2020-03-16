@@ -33,7 +33,7 @@ export class UsuariosService {
   }
 
   isAdmin(username: string, password: string) {
-    return this.http.post(`${environment.apiUrl}/users/isadmin`, {username: username, password: password});
+    return this.http.post(`${environment.apiUrl}/users/admin`, {username: username, password: password});
   }
 
   delete(id: number) {

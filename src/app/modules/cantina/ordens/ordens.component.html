@@ -1,5 +1,4 @@
 <p-table
-  [columns]="cols"
   [value]="ordens"
   [paginator]="paginacao?.perPage < paginacao?.total"
   [rows]="paginacao?.perPage"
@@ -15,27 +14,31 @@
 
   <ng-template pTemplate="header">
     <tr class="text-left">
-      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-        {{col.header}}
-      </th>
+      <th class="ui-p-1" style="width: 45px;"></th>
+      <th class="ui-p-2">Data</th>
+      <th class="ui-p-1">Cliente</th>
+      <th class="ui-p-2">Operador</th>
+      <th class="ui-p-2">Pagamento</th>
+      <th class="ui-p-1">Total</th>
+      <th class="ui-p-1" style="width: 58px;"></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-ordem let-expanded="expanded" let-columns="cols">
     <tr [pSelectableRow]="ordem" [class.table-row-danger]="ordem.deleted">
-      <td>
+      <td class="ui-p-1">
         <a href="#" [pRowToggler]="ordem">
             <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
         </a>
       </td>
-      <td>{{ ordem?.created | date:'short' }}</td>
-      <td>{{ ordem?.cliente?.nome || 'Anônimo' | uppercase}}</td>
-      <td>{{ primeiroNome(ordem?.caixa.userAbertura.name) | uppercase }}</td>
-      <td>{{ ordem?.pagamento | uppercase}}</td>
-      <td class="text-success">
+      <td class="ui-p-2">{{ ordem?.created | date:'short' }}</td>
+      <td class="ui-p-1">{{ ordem?.cliente?.nome || 'Anônimo' | uppercase}}</td>
+      <td class="ui-p-2">{{ primeiroNome(ordem?.caixa.userAbertura.name) | uppercase }}</td>
+      <td class="ui-p-2">{{ ordem?.pagamento | uppercase}}</td>
+      <td class="ui-p-1 text-success">
         {{ ordem?.total | currency:'BRL':true }}
       </td>
-      <td *ngIf="cancelamento">
-        <p-button icon="pi pi-times" title="Cancelar" styleClass="ui-button-danger" (onClick)="cancelarOrdem(ordem)"></p-button>
+      <td class="ui-p-1">
+        <p-button icon="pi pi-times" title="Cancelar" styleClass="ui-button-danger" [disabled]="cancelamento !== true" (onClick)="cancelarOrdem(ordem)"></p-button>
       </td>
     </tr>
   </ng-template>
@@ -43,7 +46,7 @@
 
   <ng-template pTemplate="rowexpansion" let-ordem let-columns="cols">
     <tr class="bg-warning">
-      <td [attr.colspan]="cols.length">
+      <td [attr.colspan]="colspan">
 
         <p-table [value]="ordem.itens">
           <ng-template pTemplate="header">

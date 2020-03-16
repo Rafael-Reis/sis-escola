@@ -15,7 +15,6 @@
 </div>
 
 <p-table
-  [columns]="cols"
   [value]="users"
   [paginator]="paginacao?.perPage < paginacao?.total"
   [rows]="paginacao?.perPage"
@@ -31,17 +30,20 @@
 
   <ng-template pTemplate="header">
     <tr class="text-left">
-      <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-        {{col.header}}
-      </th>
+      <th class="ui-p-1">Nome</th>
+      <th class="ui-p-2">Login</th>
+      <th class="ui-p-3">E-mail</th>
+      <th class="ui-p-2">Nívek</th>
+      <th class="ui-p-1" style="width: 58px;"></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-user>
     <tr [pSelectableRow]="user">
-      <td>{{user.name}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.nivel}}</td>
-      <td>
+      <td class="ui-p-1">{{user.name}}</td>
+      <td class="ui-p-2">{{user.username}}</td>
+      <td class="ui-p-3">{{user.email}}</td>
+      <td class="ui-p-2">{{user.nivel}}</td>
+      <td class="ui-p-1">
         <p-button [disabled]="acessoService.isNegado()" styleClass="ui-button-secondary" (onClick)="excluir(user)" icon="pi pi-trash"></p-button>
       </td>
     </tr>

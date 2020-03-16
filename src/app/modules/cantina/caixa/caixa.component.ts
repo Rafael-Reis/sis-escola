@@ -200,8 +200,7 @@ export class CaixaComponent implements OnInit {
         cancelamento: true
       },
       header: 'Histórico',
-      width: '75%',
-      styleClass: 'dialog-overflow'
+      styleClass: 'dialog-large dialog-overflow'
     });
 
     ref.onClose.subscribe((data: any) => {
@@ -215,7 +214,7 @@ export class CaixaComponent implements OnInit {
         opcao: 'abrir'
       },
       header: 'Abertura de Caixa',
-      width: '400px',
+      styleClass: 'dialog-medium'
 
     });
 
@@ -230,7 +229,7 @@ export class CaixaComponent implements OnInit {
         opcao: 'fechar'
       },
       header: 'Fechamento de Caixa',
-      width: '400px'
+      styleClass: 'dialog-medium'
     });
 
     ref.onClose.subscribe((status: boolean) => {

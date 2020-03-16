@@ -27,7 +27,7 @@ export class RelatorioCaixasComponent implements OnInit {
   }
 
   loadLazy(event: LazyLoadEvent) {
-    this.currentPage = 1 + ((event.first != 0) ? Math.floor(event.first / event.rows) : 0);
+    this.currentPage = 1 + ((event.first !== 0) ? Math.floor(event.first / event.rows) : 0);
     this.getPage();
   }
 
@@ -46,8 +46,7 @@ export class RelatorioCaixasComponent implements OnInit {
       data: {
         caixaId: event.data.id
       },
-      width: '70%',
-      styleClass: 'dialog-overflow'
+      styleClass: 'dialog-large dialog-overflow'
     });
   }
 
@@ -58,7 +57,7 @@ export class RelatorioCaixasComponent implements OnInit {
         caixaId: caixa.id
       },
       header: 'Fechamento de Caixa',
-      width: '400px'
+      styleClass: 'dialog-medium'
     });
 
     ref.onClose.subscribe((status: boolean) => {

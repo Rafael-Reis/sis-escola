@@ -16,9 +16,8 @@ export class UsuariosComponent implements OnInit {
   users: User[] = [];
   paginacao: Paginacao;
   niveis: any[] = [];
-  results:  User[] = [];
+  results: User[] = [];
 
-  cols: any[];
   currentPage = 0;
   tableLoading = true;
 
@@ -29,12 +28,7 @@ export class UsuariosComponent implements OnInit {
     public acessoService: AcessoService) { }
 
   ngOnInit() {
-    this.cols = [
-      { field: 'nome', header: 'Nome', width: '' },
-      { field: 'username', header: 'Nome de Usuário', width: '' },
-      { field: 'nivel', header: 'Nivel', width: '200px' },
-      { field: '', header: '', width: '60px' },
-    ];
+
   }
 
   loadLazy(event: LazyLoadEvent){
@@ -72,22 +66,20 @@ export class UsuariosComponent implements OnInit {
   showModalFormCadastro() {
     const ref = this.dialogService.open(FormCadastroUsuariosComponent, {
       header: 'Cadastrar Usuário',
-      width: '400px',
+      styleClass: 'dialog-medium',
     });
 
     ref.onClose.subscribe((user: User) => {
-
       if(user !== undefined && user !== null ){
         this.users.push(user);
       }
-
     });
   }
 
   showModalFormUpdate(user: User) {
     const ref = this.dialogService.open(FormCadastroUsuariosComponent, {
       header: 'Atualizar Usuário',
-      width: '400px',
+      styleClass: 'dialog-medium',
       data: {
         user: user
       }

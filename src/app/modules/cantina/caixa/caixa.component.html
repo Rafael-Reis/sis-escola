@@ -6,7 +6,7 @@
     <p-toolbar>
       <div class="ui-toolbar-group-left">
         <h3 class="m-0"  style="padding: 5px 0px">
-          Caixa Livre  <span class="text-muted">{{ hoje | date }}</span>
+          Caixa Livre  <span class="text-muted">{{ hoje | date:'dd/MM/yyyy' }}</span>
         </h3>
       </div>
 
@@ -16,7 +16,7 @@
 
         <i class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
 
-        <p-button type="button" icon="pi pi-lock" label="Fechar o Caixa" styleClass="ui-button-warning"   (onClick)="showModalFecharCaixa()" title="Fechar o Caixa" ></p-button>
+        <p-button type="button" icon="pi pi-lock" styleClass="ui-button-warning"   (onClick)="showModalFecharCaixa()" title="Fechar o Caixa" ></p-button>
 
       </div>
     </p-toolbar>

@@ -31,21 +31,10 @@ export class TurmasComponent implements OnInit {
     private toastService: ToastService) { }
 
   ngOnInit() {
-    this.columns();
     this.getAnosLetivos();
 
     this.turnos = this.turmasService.getTurnos();
     this.ano    = new Date().getFullYear();
-  }
-
-  columns() {
-    this.cols = [
-      { field: '', header: '', width: '45px' },
-      { field: 'nome', header: 'Nome', width: '' },
-      { field: 'turno', header: 'Turno', width: '' },
-      { field: 'total', header: 'N° Estudantes', width: '130px' },
-      { field: '', header: '', width: '60px' },
-    ];
   }
 
   loadLazy(event: LazyLoadEvent){
@@ -115,7 +104,7 @@ export class TurmasComponent implements OnInit {
         anos: this.anos
       },
       header: 'Cadastrar Turma',
-      width: '380px',
+      styleClass: 'dialog-medium dialog-overflow'
     });
 
     ref.onClose.subscribe((data: Turma) => {
@@ -129,12 +118,12 @@ export class TurmasComponent implements OnInit {
 
   showModalFormUpdate(turma: Turma){
     const ref = this.dialogService.open(FormCadastroTurmaComponent, {
-      header: 'Atualizar Turma',
-      width: '380px',
       data: {
         anos: this.anos,
         turma: turma
-      }
+      },
+      header: 'Atualizar Turma',
+      styleClass: 'dialog-medium dialog-overflow',
     });
 
     ref.onClose.subscribe((data: Turma) => {

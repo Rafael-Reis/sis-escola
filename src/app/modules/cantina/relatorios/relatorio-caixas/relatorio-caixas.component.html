@@ -1,5 +1,4 @@
 <p-table
-  [columns]="cols"
   [value]="caixas"
   [paginator]="paginacao?.perPage < paginacao?.total"
   [rows]="paginacao?.perPage"
@@ -17,12 +16,12 @@
 
   <ng-template pTemplate="header">
     <tr class="text-left">
-      <th>Aberto em</th>
-      <th>Fechado em</th>
-      <th>Operador</th>
-      <th>Suprimento</th>
-      <th>Total a Vista</th>
-      <th>Total a Prazo</th>
+      <th class="ui-p-1">Aberto em</th>
+      <th class="ui-p-1">Fechado em</th>
+      <th class="ui-p-2">Operador</th>
+      <th class="ui-p-3">Suprimento</th>
+      <th class="ui-p-4">Total a Vista</th>
+      <th class="ui-p-4">Total a Prazo</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-caixa let-expanded="expanded" let-columns="cols">
@@ -38,9 +37,9 @@
         </ng-template>
       </td>
       <td class="ui-p-2">{{ caixa?.userAbertura.name }}</td>
-      <td class="ui-p-2">{{ caixa?.suprimento | currency:'BRL':true }}</td>
-      <td class="ui-p-3 text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
-      <td class="ui-p-3 text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
+      <td class="ui-p-3">{{ caixa?.suprimento | currency:'BRL':true }}</td>
+      <td class="ui-p-4 text-success">{{ caixa?.totalAvista | currency:'BRL':true }}</td>
+      <td class="ui-p-4 text-warning">{{ caixa?.totalAprazo | currency:'BRL':true }}</td>
     </tr>
   </ng-template>
 

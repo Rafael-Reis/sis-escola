@@ -13,7 +13,6 @@
 
 <ng-container>
   <p-table
-    [columns]="cols"
     [value]="turmas"
     [lazy]="true"
     (onLazyLoad)="loadLazy($event)"
@@ -29,22 +28,24 @@
     </ng-template>
 
     <ng-template pTemplate="header">
-        <tr class="text-left">
-          <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }" pReorderableColumn>
-            {{col.header}}
-          </th>
-        </tr>
+      <tr class="text-left">
+        <th class="ui-p-1" style="width: 45px;" pReorderableColumn></th>
+        <th class="ui-p-1">Nome</th>
+        <th class="ui-p-2">Turno</th>
+        <th class="ui-p-2">Total</th>
+        <th class="ui-p-1" style="width: 58px;"></th>
+      </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-turma let-index="rowIndex">
       <tr [pSelectableRow]="turma" [pReorderableRow]="index">
-        <td>
+        <td class="ui-p-1">
           <i title="Mover" class="pi pi-bars" pReorderableRowHandle></i>
         </td>
-        <td>{{ turma.nome }}</td>
-        <td>{{ getNomeTurno(turma.turno) }}</td>
-        <td>{{ turma.total }}</td>
-        <td>
+        <td class="ui-p-1">{{ turma.nome }}</td>
+        <td class="ui-p-2">{{ getNomeTurno(turma.turno) }}</td>
+        <td class="ui-p-2">{{ turma.total }}</td>
+        <td class="ui-p-1">
           <p-button [disabled]="acessoService.isNegado()" styleClass="ui-button-secondary" (onClick)="excluir(turma)" icon="pi pi-trash"></p-button>
         </td>
       </tr>

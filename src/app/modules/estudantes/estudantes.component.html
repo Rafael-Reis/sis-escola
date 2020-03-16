@@ -22,7 +22,6 @@
 
 <ng-container>
   <p-table
-    [columns]="cols"
     [value]="estudantes"
     [paginator]="paginacao?.perPage < paginacao?.total"
     [rows]="paginacao?.perPage"
@@ -40,23 +39,25 @@
 
     <ng-template pTemplate="header">
       <tr class="text-left">
-        <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-          {{col.header}}
-        </th>
+        <th class="ui-p-1">Nome</th>
+        <th class="ui-p-2">Data de nascimento</th>
+        <th class="ui-p-3">Situação</th>
+        <th class="ui-p-2">Sexo</th>
+        <th style="width: 58px;"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-estudante>
       <tr [pSelectableRow]="estudante">
-        <td>{{ estudante?.nome | uppercase }}</td>
-        <td>{{ estudante?.dataNascimento | date:'shortDate' }}</td>
-        <td  [ngClass]="{
+        <td class="ui-p-1">{{ estudante?.nome | uppercase }}</td>
+        <td class="ui-p-2">{{ estudante?.dataNascimento | date:'shortDate' }}</td>
+        <td class="ui-p-3" [ngClass]="{
           'table-row-tranferido': estudante.situacao === 'transferido',
           'table-row-pendente': estudante.situacao === 'pendente'
         }">
           {{ estudante.situacao | uppercase  }}
         </td>
-        <td class="text-center">{{ estudante?.sexo | uppercase }}</td>
-        <td>
+        <td class="ui-p-2 text-center">{{ estudante?.sexo | uppercase }}</td>
+        <td class="ui-p-1">
           <p-button [disabled]="acessoService.isNegado()" styleClass="ui-button-secondary" (onClick)="excluir(estudante)" icon="pi pi-trash"></p-button>
         </td>
       </tr>

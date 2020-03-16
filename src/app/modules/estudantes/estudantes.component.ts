@@ -26,7 +26,6 @@ export class EstudantesComponent implements OnInit {
   text: string;
   results: Estudante[];
 
-  cols: any[];
   currentPage = 0;
   tableLoading = true;
 
@@ -39,18 +38,6 @@ export class EstudantesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.columns();
-
-  }
-
-  columns() {
-    this.cols = [
-      { field: 'nome', header: 'Nome', width: '' },
-      { field: 'dataNascimento', header: 'Data de nascimento', width: '200px' },
-      { field: 'situacao', header: 'Situação', width: '' },
-      { field: 'sexo', header: 'Sexo', width: '60px' },
-      { field: '', header: '', width: '58px' },
-    ];
   }
 
   loadLazy(event: LazyLoadEvent){
@@ -113,7 +100,7 @@ export class EstudantesComponent implements OnInit {
   showModalFormCadastro(){
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Cadastrar Estudante',
-      styleClass: 'dialog-large',
+      styleClass: 'dialog-large dialog-overflow',
       data: {
         turmas: this.turmas,
         turma: this.turma
@@ -132,7 +119,7 @@ export class EstudantesComponent implements OnInit {
   showModalFormUpdate(){
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Editar Estudante',
-      styleClass: 'dialog-large overflow-dialog ',
+      styleClass: 'dialog-large dialog-overflow',
       data: {
         turmas: this.turmas,
         estudante: this.estudante,
@@ -160,7 +147,7 @@ export class EstudantesComponent implements OnInit {
   showModalSearch(){
     const ref = this.dialogService.open(PesquisarEstudanteComponent, {
       header: 'Procurar Estudante',
-      styleClass: 'dialog-large',
+      styleClass: 'dialog-medium',
     });
 
     ref.onClose.subscribe((estudante: Estudante) => {

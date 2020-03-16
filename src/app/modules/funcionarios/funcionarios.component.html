@@ -16,7 +16,6 @@
 
 <ng-container>
   <p-table
-    [columns]="cols"
     [value]="funcionarios"
     [paginator]="paginacao?.perPage < paginacao?.total"
     [rows]="paginacao?.perPage"
@@ -34,20 +33,22 @@
 
     <ng-template pTemplate="header">
       <tr class="text-left">
-        <th *ngFor="let col of cols" [ngStyle]="{ 'width': col.width }">
-          {{col.header}}
-        </th>
+        <th class="ui-p-1">Nome</th>
+        <th class="ui-p-2">Data Nascimento</th>
+        <th class="ui-p-3">Situação</th>
+        <th class="ui-p-2">Sexo</th>
+        <th style="width: 58px;" class="ui-p-1"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-funcionario>
       <tr [pSelectableRow]="funcionario">
-        <td>{{ funcionario?.nome | uppercase }}</td>
-        <td>{{ funcionario?.dataNascimento | date:'shortDate' }}</td>
-        <td>
+        <td class="ui-p-1">{{ funcionario?.nome | uppercase }}</td>
+        <td class="ui-p-2">{{ funcionario?.dataNascimento | date:'shortDate' }}</td>
+        <td class="ui-p-3">
           {{ funcionario.situacao | uppercase  }}
         </td>
-        <td class="text-center">{{ funcionario?.sexo | uppercase }}</td>
-        <td>
+        <td class="ui-p-2 text-center">{{ funcionario?.sexo | uppercase }}</td>
+        <td class="ui-p-1">
           <p-button styleClass="ui-button-secondary" (onClick)="excluir(funcionario)" icon="pi pi-trash"></p-button>
         </td>
       </tr>

@@ -18,7 +18,6 @@ export class FuncionariosComponent implements OnInit {
 
   results: Funcionario[];
 
-  cols: any[];
   currentPage = 0;
   tableLoading = true;
 
@@ -28,17 +27,7 @@ export class FuncionariosComponent implements OnInit {
     private dialogService: DialogService) { }
 
   ngOnInit() {
-    this.columns();
-  }
 
-  columns() {
-    this.cols = [
-      { field: 'nome', header: 'Nome', width: '' },
-      { field: 'dataNascimento', header: 'Data de nascimento', width: '200px' },
-      { field: 'situacao', header: 'Situação', width: '' },
-      { field: 'sexo', header: 'Sexo', width: '60px' },
-      { field: '', header: '', width: '58px' },
-    ];
   }
 
   loadLazy(event: LazyLoadEvent){
@@ -75,7 +64,7 @@ export class FuncionariosComponent implements OnInit {
   showModalFormCadastro() {
     const ref = this.dialogService.open(FormCadastroFuncionarioComponent, {
       header: 'Cadastrar Funcionário',
-      width: '70%'
+      styleClass: 'dialog-large dialog-overflow'
     });
 
     ref.onClose.subscribe( (funcionario) => {
@@ -88,7 +77,7 @@ export class FuncionariosComponent implements OnInit {
   showModalFormUpdate(data: Funcionario) {
     const ref = this.dialogService.open(FormCadastroFuncionarioComponent, {
       header: 'Editar Funcionário',
-      width: '70%',
+      styleClass: 'dialog-large dialog-overflow',
       data: {
         funcionario: data
       }

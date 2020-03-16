@@ -61,7 +61,7 @@ export class ImportacaoBackupComponent implements OnInit {
   showModalFormImport(){
     const ref = this.dialogService.open(FormImportEstudanteComponent, {
       header: 'Importar Estudantes',
-      width: '80%',
+      styleClass: 'dialog-large dialog-overflow'
     });
   }
 

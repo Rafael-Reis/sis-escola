@@ -41,10 +41,7 @@ export class AppComponent {
 
     this.menu();
 
-
-
-
-
+    this.isOpen = this.deviceDetectorService.isMobile() ? false : true ;
 
   }
 
@@ -64,7 +61,7 @@ export class AppComponent {
 
   toggleMenu() {
 
-    if(this.deviceDetectorService.isMobile) {
+    if(this.deviceDetectorService.isMobile()) {
       this.isOpen = !this.isOpen;
     }
 
