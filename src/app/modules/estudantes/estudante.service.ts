@@ -1,9 +1,10 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { FileSaverService } from 'ngx-filesaver';
 
-import { Estudante } from './estudante.model';
+import { Estudante, RespEstudante } from './estudante.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +13,28 @@ export class EstudanteService {
 
   constructor(private http: HttpClient, private fileSaverService: FileSaverService) { }
 
-  create(estudante: Estudante) {
-    return this.http.post(`${environment.apiUrl}/estudantes`, estudante);
+  create(estudante: Estudante): Observable<RespEstudante> {
+    return this.http.post<RespEstudante>(`${environment.apiUrl}/estudantes`, estudante);
   }
 
-  update(estudante: Estudante) {
-    return this.http.put(`${environment.apiUrl}/estudantes`, estudante);
+  update(estudante: Estudante): Observable<RespEstudante> {
+    return this.http.put<RespEstudante>(`${environment.apiUrl}/estudantes`, estudante);
   }
 
-  get(id: number){
-    return this.http.get(`${environment.apiUrl}/estudantes/${id}`);
+  getId(id: number): Observable<Estudante> {
+    return this.http.get<Estudante>(`${environment.apiUrl}/estudantes/${id}`);
   }
 
-  search(query: string){
-    return this.http.get(`${environment.apiUrl}/estudantes/search/${query}`);
+  search(query: string): Observable<Estudante[]> {
+    return this.http.get<Estudante[]>(`${environment.apiUrl}/estudantes/search/${query}`);
   }
 
   getComprasCantina(id: number, mes: number) {
     return this.http.get(`${environment.apiUrl}/estudantes/cantina/${id}/${mes}`);
   }
 
-  delete(id: number){
-    return this.http.delete(`${environment.apiUrl}/estudantes/${id}`);
+  delete(id: number): Observable<RespEstudante> {
+    return this.http.delete<RespEstudante>(`${environment.apiUrl}/estudantes/${id}`);
   }
 
   getPage(turmaId: number, pageNum: number){

@@ -15,7 +15,7 @@ export class FormCadastroPassaportesComponent implements OnInit {
   numMaxPassaports = 3;
   submit = false;
 
-  @Input() estudante: Estudante;
+  @Input() estudante?: Estudante;
 
   constructor(
     private fb: FormBuilder,
@@ -24,18 +24,15 @@ export class FormCadastroPassaportesComponent implements OnInit {
     private estudanteService: EstudanteService) { }
 
   ngOnInit() {
-
     this.createForm();
     this.setValuesForm();
   }
 
   createForm() {
-
     this.passaportesForm = this.fb.group({
-      id: [''],
+      id: [this.estudante.id],
       passaportes: this.fb.array([ this.createItemPassaportes() ]),
     });
-
   }
 
   setValuesForm() {
@@ -50,18 +47,12 @@ export class FormCadastroPassaportesComponent implements OnInit {
 
       this.removeItemPassaportes(0);
 
-      this.passaportesForm.patchValue({
-        id: this.estudante.id
-      });
-
       this.estudante.passaportes.forEach(item => {
-
         this.getFormArrayPassaportes().push(this.fb.group({
           login: item.login,
           senha: item.senha,
           tipo: item.tipo
         }));
-
       });
     }
   }

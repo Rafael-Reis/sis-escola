@@ -9,7 +9,7 @@ import { DialogService, DynamicDialogConfig , DynamicDialogRef} from 'primeng/dy
 import { SelectItem } from 'primeng/api';
 
 import { Turma } from '../../turmas/turma.model';
-import { Estudante } from './../estudante.model';
+import { Estudante, RespEstudante } from './../estudante.model';
 import { ToastService } from './../../../shared/components/toast/toast.service';
 
 @Component({
@@ -25,9 +25,6 @@ export class FormCadastroEstudanteComponent implements OnInit {
   situacaoSelect: SelectItem[] = [];
 
   formEstudante: FormGroup;
-
-
-
   dataNascimento: any;
 
   submit = false;
@@ -130,43 +127,27 @@ export class FormCadastroEstudanteComponent implements OnInit {
   }
 
 
-
   setDataNacimento(dataNasc) {
     console.log("NASCIDO: " + dataNasc)
     this.formEstudante.controls['dataNascimento'].setValue(dataNasc);
   }
-
 
   formSubmit(){
     if(this.formEstudante.valid){
 
       this.submit = true;
 
-      //create
-      if(!this.estudante){
-        console.log('Create')
+      const req = !this.estudante ? this.estudanteService.create(this.formEstudante.value)
+                                  : this.estudanteService.update(this.formEstudante.value) ;
 
-        this.estudanteService.create(this.formEstudante.value).subscribe( (estudante: Estudante) => {
-          this.dialogDynamic.close(estudante);
-          this.toast.showSuccess("Cadastrado Realizado");
-        }, error => {
-          this.submit = false;
-        }, () =>  {
-          this.submit = false;
-        });
-
-      } else { //update
-        console.log('update')
-        this.estudanteService.update(this.formEstudante.value).subscribe( (estudante: Estudante) => {
-          this.dialogDynamic.close(estudante);
-          this.toast.showSuccess("Cadastrado Atualizado");
-        }, error => {
-          this.submit = false;
-        }, () =>  {
-          this.submit = false;
-        });
-
-      }
+      req.subscribe( (resp: RespEstudante) => {
+        this.submit = false;
+        this.toast.showSuccess(resp.message);
+        this.dialogDynamic.close(resp.estudante);
+      }, error => {
+        this.submit = false;
+        this.toast.showErrorResponse(error);
+      });
 
     }else{
 
@@ -175,8 +156,6 @@ export class FormCadastroEstudanteComponent implements OnInit {
       Object.keys(this.formEstudante.controls).forEach(field => {
         this.formEstudante.get(field).markAsTouched({ onlySelf: true });
       });
-
-      console.log(this.formEstudante.value)
 
     }
   }

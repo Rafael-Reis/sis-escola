@@ -29,7 +29,7 @@ export class UsuariosService {
   }
 
   getPage(current: number) {
-    return this.http.get(`${environment.apiUrl}/users/page?page=${current}`);
+    return this.http.get(`${environment.apiUrl}/users/page/${current}`);
   }
 
   isAdmin(username: string, password: string) {

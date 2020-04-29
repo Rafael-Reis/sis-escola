@@ -8,7 +8,11 @@
 
       <p-dropdown [options]="turmas" optionLabel="nome" (onChange)="selectTurma($event.value)"></p-dropdown>
 
-      <i class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
+      <i *ngIf="!deviceDetectorService.isMobile()" class="ui-toolbar-separator pi pi-ellipsis-v" style="vertical-align: middle"></i>
+
+      <span *ngIf="deviceDetectorService.isMobile()">
+        <hr>
+      </span>
 
       <p-splitButton label="Opções" styleClass="ui-button-success" [model]="optionsToolbar"></p-splitButton>
 
@@ -38,10 +42,11 @@
         <th class="ui-p-1">Nome</th>
         <th class="ui-p-2">Data de nascimento</th>
         <th class="ui-p-3">Situação</th>
-        <th class="ui-p-2">Sexo</th>
+        <th class="ui-p-2" style="width: 60px;" >Sexo</th>
         <th style="width: 58px;"></th>
       </tr>
     </ng-template>
+
     <ng-template pTemplate="body" let-estudante>
       <tr [pSelectableRow]="estudante">
         <td class="ui-p-1">{{ estudante?.nome | uppercase }}</td>

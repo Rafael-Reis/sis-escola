@@ -10,7 +10,7 @@ import { EstudanteService } from './../estudante.service';
   templateUrl: './compras-cantina.component.html'
 })
 export class ComprasCantinaComponent implements OnInit {
-  ordens: Ordem[] = [];
+  ordens: Ordem[];
   mes: number;
   meses: SelectItem[];
 

@@ -30,10 +30,14 @@ export class CaixaService {
     return this.http.get(url);
   }
 
-  getPage(currentPage: number) {
-    return this.http.get(`${environment.apiUrl}/caixas/page?page=${currentPage}`);
+  getPage(current: number) {
+    return this.http.get(`${environment.apiUrl}/caixas/page/${current}`);
   }
 
+
+  getCaixasPorMes(mes: number, current: number) {
+    return this.http.get(`${environment.apiUrl}/caixas/mes/${mes}/page/${current}`);
+  }
 
 
 }

@@ -108,18 +108,13 @@ body{
 
   .ui-toolbar-group-left, .ui-toolbar-group-right {
     @media screen and (max-width: $small-media) {
-      display: block !important;
-      width: 100% !important;
+
       padding: 10px 0px !important;
-      float: none !important;
+
     }
   }
 
- .ui-toolbar-group-right {
-    @media screen and (max-width: $small-media) {
-      border-top: solid 1px #ccc;
-    }
-  }
+
 
   .ui-inputtext, body .ui-dropdown{
     border-radius: 0;

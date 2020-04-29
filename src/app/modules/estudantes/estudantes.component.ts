@@ -1,4 +1,5 @@
-import { SelectItem, MenuItem } from 'primeng/api';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { MenuItem } from 'primeng/api';
 import { AcessoService } from './../../auth/acesso.service';
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -6,7 +7,7 @@ import { LazyLoadEvent, SelectableRow } from 'primeng/primeng';
 import { ToastService } from './../../shared/components/toast/toast.service';
 import { EstudanteService } from './estudante.service';
 import { TurmasService } from './../turmas/turmas.service';
-import { Estudante } from './estudante.model';
+import { Estudante, PageEstudante } from './estudante.model';
 import { Paginacao } from './../../shared/models/paginacao.model';
 import { Turma } from '../turmas/turma.model';
 
@@ -33,6 +34,7 @@ export class EstudantesComponent implements OnInit {
 
   constructor(
     public acessoService: AcessoService,
+    public deviceDetectorService: DeviceDetectorService,
     public dialogService: DialogService,
     private turmasService: TurmasService,
     private estudanteService: EstudanteService,
@@ -61,7 +63,7 @@ export class EstudantesComponent implements OnInit {
 
   onRowSelect(event: SelectableRow) {
     this.estudante = event.data;
-    this.estudanteService.get(this.estudante.id).subscribe( (estudante: Estudante) => {
+    this.estudanteService.getId(this.estudante.id).subscribe( (estudante: Estudante) => {
       this.estudante = estudante;
       this.showModalFormUpdate();
     });
@@ -69,16 +71,15 @@ export class EstudantesComponent implements OnInit {
 
   getEstudantesTurma(){
     if(this.turma) {
-
       this.tableLoading = true;
 
-      this.estudanteService.getPage(this.turma.id, this.currentPage).subscribe( (data: any) => {
-        this.estudantes = data.estudantes;
-        this.paginacao  = data.paginacao;
+      this.estudanteService.getPage(this.turma.id, this.currentPage).subscribe( (resp: PageEstudante) => {
+        this.estudantes = resp.estudantes;
+        this.paginacao  = resp.paginacao;
         this.currentPage = this.paginacao.currentPage;
       }, error => {
         this.tableLoading = false;
-        this.toast.showError('Falha na listagem de estudantes!');
+        this.toast.showErrorResponse(error);
       }, () => {
         this.tableLoading = false;
       });
@@ -113,11 +114,9 @@ export class EstudantesComponent implements OnInit {
     });
 
     ref.onClose.subscribe((estudante: Estudante) => {
-
-      if(estudante && estudante !== undefined ){
+      if(estudante !== undefined ){
         this.estudantes.push(estudante);
       }
-
     });
   }
 
@@ -132,13 +131,12 @@ export class EstudantesComponent implements OnInit {
     });
 
     ref.onClose.subscribe((estudante: Estudante) => {
-      if(estudante !== undefined && estudante !== undefined) {
+      if(estudante !== undefined) {
 
         if(this.estudante.turma.id !== estudante.turma.id){
           this.estudantes.splice(this.estudantes.indexOf(this.estudante), 1);
         } else {
           const i = this.estudantes.indexOf(estudante);
-
           if(i >= 0 ){
             this.estudantes[i] = estudante;
           }

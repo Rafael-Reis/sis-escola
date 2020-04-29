@@ -1,4 +1,15 @@
+import { Paginacao } from './../../shared/models/paginacao.model';
 import { Turma } from '../turmas/turma.model';
+
+export interface RespEstudante {
+  message: string;
+  estudante?: Estudante;
+}
+
+export interface PageEstudante {
+  estudantes: Estudante[];
+  paginacao: Paginacao;
+}
 
 export interface Estudante {
   id?: number;

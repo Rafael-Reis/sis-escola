@@ -5,7 +5,7 @@
   <p-dropdown [options]='meses' [(ngModel)]="mes" (onChange)="selectMes($event)"></p-dropdown>
 </div>
 
-<div *ngIf="ordens.length>0; else noOrdens">
+<div *ngIf="ordens; else noOrdens">
   <p-table
     [columns]="cols"
     [value]="ordens"

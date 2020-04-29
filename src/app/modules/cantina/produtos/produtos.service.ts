@@ -39,8 +39,8 @@ export class ProdutosService {
     return this.http.delete(`${environment.apiUrl}/produtos/${id}`);
   }
 
-  getPage(pageNum: number){
-    return this.http.get(`${environment.apiUrl}/produtos?page=${pageNum}`);
+  getPage(current: number){
+    return this.http.get(`${environment.apiUrl}/produtos/page/${current}`);
   }
 
 }

@@ -1,3 +1,7 @@
+<div class="text-left mb-2">
+  Mês: <p-dropdown [options]="meses" (onChange)="selectMes($event.value)"></p-dropdown>
+</div>
+
 <p-table
   [value]="caixas"
   [paginator]="paginacao?.perPage < paginacao?.total"

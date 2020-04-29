@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/sis-escola/api'
+  apiUrl: 'http://localhost/apis/api-sisescola/api'
 };
 
 /*

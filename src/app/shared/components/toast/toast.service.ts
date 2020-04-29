@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
@@ -38,6 +39,10 @@ export class ToastService {
     }else{
       this.messageService.add({ severity: 'error', summary: title, detail: text});
     }
+  }
+
+  showErrorResponse(error: HttpErrorResponse) {
+    this.showError('Falha! Error ' + error.status);
   }
 
   clear() {

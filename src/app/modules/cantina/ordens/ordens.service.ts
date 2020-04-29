@@ -61,11 +61,11 @@ export class OrdensService {
   }
 
   getOrdensPage(current: number) {
-    return this.http.get(`${environment.apiUrl}/ordens/page?page=${current}`);
+    return this.http.get(`${environment.apiUrl}/ordens/page/${current}`);
   }
 
   getOrdensPageCaixa(current: number, caixaId: number) {
-    return this.http.get(`${environment.apiUrl}/ordens/caixa/${caixaId}/page?page=${current}`);
+    return this.http.get(`${environment.apiUrl}/ordens/caixa/${caixaId}/page/${current}`);
   }
 
 }

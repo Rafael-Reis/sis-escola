@@ -17,7 +17,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
       })),
 
       state('closed', style({
-        left: '-200px',
+        left: '-250px',
         opacity: 0.5
       })),
 
@@ -29,9 +29,9 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   ]
 })
 export class AppComponent {
-  title = "SISECOLA";
-  items: MenuItem[];
+  title = "SISESCOLA";
   isOpen = true;
+  items: MenuItem[];
 
   constructor(
     private authService: AuthService,
@@ -40,11 +40,14 @@ export class AppComponent {
   ngOnInit() {
 
     this.menu();
-
     this.isOpen = this.deviceDetectorService.isMobile() ? false : true ;
 
   }
 
+  nomeUsuario() {
+    const nome = this.authService.user.name;
+    return nome ? nome.slice(0, nome.indexOf(' ')) : '';
+  }
 
   menu() {
     this.items = [
@@ -58,18 +61,10 @@ export class AppComponent {
     ];
   }
 
-
   toggleMenu() {
-
     if(this.deviceDetectorService.isMobile()) {
       this.isOpen = !this.isOpen;
     }
-
-  }
-
-  primeiroNome() {
-    const nome = this.authService.user.name;
-    return nome ? nome.slice(0, nome.indexOf(' ')) : '';
   }
 
   isLogged() {
