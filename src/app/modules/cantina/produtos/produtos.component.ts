@@ -79,6 +79,7 @@ export class ProdutosComponent implements OnInit {
       data: {},
       header: 'Cadastrar Produto',
       styleClass: 'dialog-medium',
+      dismissableMask: false,
     });
 
     ref.onClose.subscribe((produto: Produto) => {

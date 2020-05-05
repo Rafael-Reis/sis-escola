@@ -65,8 +65,9 @@ export class FormCadastroPassaportesComponent implements OnInit {
     return this.fb.group({login: '', senha: '', tipo: ''})
   }
 
-  addItemPassaportes(): void {
+  addItemPassaportes() {
     this.getFormArrayPassaportes().push(this.createItemPassaportes());
+    return false;
   }
 
   removeItemPassaportes(i: number): void {

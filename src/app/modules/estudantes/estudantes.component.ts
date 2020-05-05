@@ -107,6 +107,7 @@ export class EstudantesComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Cadastrar Estudante',
       styleClass: 'dialog-large dialog-overflow',
+      dismissableMask: false,
       data: {
         turmas: this.turmas,
         turma: this.turma
@@ -124,6 +125,7 @@ export class EstudantesComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroEstudanteComponent, {
       header: 'Editar Estudante',
       styleClass: 'dialog-large dialog-overflow',
+      dismissableMask: false,
       data: {
         turmas: this.turmas,
         estudante: this.estudante,

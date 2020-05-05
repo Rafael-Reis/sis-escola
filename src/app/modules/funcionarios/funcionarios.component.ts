@@ -64,7 +64,8 @@ export class FuncionariosComponent implements OnInit {
   showModalFormCadastro() {
     const ref = this.dialogService.open(FormCadastroFuncionarioComponent, {
       header: 'Cadastrar Funcionário',
-      styleClass: 'dialog-large dialog-overflow'
+      styleClass: 'dialog-large dialog-overflow',
+      dismissableMask: false,
     });
 
     ref.onClose.subscribe( (funcionario) => {
@@ -78,6 +79,7 @@ export class FuncionariosComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroFuncionarioComponent, {
       header: 'Editar Funcionário',
       styleClass: 'dialog-large dialog-overflow',
+      dismissableMask: false,
       data: {
         funcionario: data
       }

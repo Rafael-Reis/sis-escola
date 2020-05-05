@@ -104,7 +104,8 @@ export class TurmasComponent implements OnInit {
         anos: this.anos
       },
       header: 'Cadastrar Turma',
-      styleClass: 'dialog-medium dialog-overflow'
+      styleClass: 'dialog-medium dialog-overflow',
+      dismissableMask: false,
     });
 
     ref.onClose.subscribe((data: Turma) => {

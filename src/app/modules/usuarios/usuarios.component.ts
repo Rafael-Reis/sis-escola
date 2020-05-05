@@ -67,6 +67,7 @@ export class UsuariosComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroUsuariosComponent, {
       header: 'Cadastrar Usuário',
       styleClass: 'dialog-medium',
+      dismissableMask: false,
     });
 
     ref.onClose.subscribe((user: User) => {
@@ -80,6 +81,7 @@ export class UsuariosComponent implements OnInit {
     const ref = this.dialogService.open(FormCadastroUsuariosComponent, {
       header: 'Atualizar Usuário',
       styleClass: 'dialog-medium',
+      dismissableMask: false,
       data: {
         user: user
       }
